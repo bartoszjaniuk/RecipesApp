@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using RecipesApp.API.Models;
 
 namespace RecipesApp.API.Controllers.Models.Data
 {
@@ -7,6 +8,7 @@ namespace RecipesApp.API.Controllers.Models.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) {}
         
             public DbSet<Value> Values {get; set;}
+            public DbSet<User> Users {get; set;}
         
     }
 }

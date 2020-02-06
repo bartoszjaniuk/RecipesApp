@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj": {}
+    "c:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj": {
+    "c:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj",
+        "projectUniqueName": "c:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj",
         "projectName": "RecipesApp.API",
-        "projectPath": "C:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj",
+        "projectPath": "c:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj",
         "packagesPath": "C:\\Users\\janiu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\obj\\",
+        "outputPath": "c:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -42,6 +42,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.1, )"
@@ -53,6 +57,14 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[3.1.1, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[5.6.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[5.6.0, )"
             }
           },
           "imports": [
