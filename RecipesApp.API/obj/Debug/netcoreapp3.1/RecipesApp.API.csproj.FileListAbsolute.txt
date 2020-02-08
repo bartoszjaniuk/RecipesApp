@@ -59,3 +59,6 @@ C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\Microsoft.Ident
 C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
