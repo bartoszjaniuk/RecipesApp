@@ -82,7 +82,7 @@
       "Country": "Eritrea",
       "UserPhotos": [
         {
-          "url": "https://randomuser.me/api/portraits/women/14.jpg",
+          "url": "https://randomuser.me/api/portraits/women/15.jpg",
           "isMain": true,
           "description": "Voluptate consectetur ea mollit qui deserunt aute aliqua consectetur ex velit ad ex et commodo."
         }
@@ -96,7 +96,7 @@
           "DateAdded": "2017-04-09",
           "RecipePhotos": [
             {
-              "url": "https://randomuser.me/api/portraits/women/38.jpg",
+              "url": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg",
               "isMain": true,
               "description": "Aute aliquip pariatur consequat dolor do non enim."
             }
@@ -131,7 +131,7 @@
           "DateAdded": "2017-06-17",
           "RecipePhotos": [
             {
-              "url": "https://randomuser.me/api/portraits/women/36.jpg",
+              "url": "https://cdn.pixabay.com/photo/2015/11/02/20/27/taco-1018962_960_720.jpg",
               "isMain": true,
               "description": "Fugiat sunt cupidatat dolor anim dolore sunt."
             }
@@ -166,7 +166,7 @@
           "DateAdded": "2017-02-09",
           "RecipePhotos": [
             {
-              "url": "https://randomuser.me/api/portraits/women/26.jpg",
+              "url": "https://wilkuchnia.pl/wp-content/uploads/2019/03/brownie-blog-1.jpg",
               "isMain": true,
               "description": "Pariatur nulla culpa excepteur irure proident."
             }
@@ -187,7 +187,7 @@
           "Country": "San Marino",
           "UserPhotos": [
             {
-              "url": "https://randomuser.me/api/portraits/male/2.jpg",
+              "url": "https://randomuser.me/api/portraits/men/2.jpg",
               "isMain": true,
               "description": "Excepteur ipsum et amet occaecat sint non Lorem veniam nostrud."
             }
@@ -201,7 +201,7 @@
               "DateAdded": "2017-01-01",
               "RecipePhotos": [
                 {
-                  "url": "https://randomuser.me/api/portraits/women/18.jpg",
+                  "url": "https://cdn.pixabay.com/photo/2017/10/20/17/45/goulash-2872112_960_720.jpg",
                   "isMain": true,
                   "description": "Reprehenderit amet culpa mollit tempor consectetur enim est tempor quis."
                 }
@@ -222,7 +222,7 @@
           "Country": "Mali",
           "UserPhotos": [
             {
-              "url": "https://randomuser.me/api/portraits/male/42.jpg",
+              "url": "https://randomuser.me/api/portraits/men/42.jpg",
               "isMain": true,
               "description": "Exercitation ipsum commodo aute minim in sunt."
             }
@@ -236,7 +236,7 @@
               "DateAdded": "2017-05-04",
               "RecipePhotos": [
                 {
-                  "url": "https://randomuser.me/api/portraits/women/26.jpg",
+                  "url": "https://cdn.pixabay.com/photo/2018/10/14/13/20/burger-3746476_960_720.jpg",
                   "isMain": true,
                   "description": "Laboris dolore deserunt ea Lorem eiusmod cillum aliquip dolor sint deserunt cupidatat ut ut tempor."
                 }
@@ -257,7 +257,7 @@
           "Country": "Andorra",
           "UserPhotos": [
             {
-              "url": "https://randomuser.me/api/portraits/male/64.jpg",
+              "url": "https://randomuser.me/api/portraits/men/64.jpg",
               "isMain": true,
               "description": "Eiusmod deserunt eiusmod cillum quis officia aliquip nulla."
             }
@@ -271,7 +271,7 @@
               "DateAdded": "2017-04-16",
               "RecipePhotos": [
                 {
-                  "url": "https://randomuser.me/api/portraits/women/46.jpg",
+                  "url": "https://cdn.pixabay.com/photo/2016/11/23/14/37/baked-goods-1853261_960_720.jpg",
                   "isMain": true,
                   "description": "Sint ex amet et reprehenderit voluptate."
                 }
@@ -292,7 +292,7 @@
           "Country": "Germany",
           "UserPhotos": [
             {
-              "url": "https://randomuser.me/api/portraits/male/83.jpg",
+              "url": "https://randomuser.me/api/portraits/men/83.jpg",
               "isMain": true,
               "description": "Ut ullamco ullamco adipisicing laboris sit consequat cillum dolor deserunt adipisicing non nisi eu consectetur."
             }
@@ -306,7 +306,7 @@
               "DateAdded": "2017-07-08",
               "RecipePhotos": [
                 {
-                  "url": "https://randomuser.me/api/portraits/women/81.jpg",
+                  "url": "https://cdn.pixabay.com/photo/2014/08/25/15/32/cream-puffs-427181_960_720.jpg",
                   "isMain": true,
                   "description": "Dolor cupidatat ea dolor Lorem duis id exercitation."
                 }
@@ -327,7 +327,7 @@
           "Country": "Jamaica",
           "UserPhotos": [
             {
-              "url": "https://randomuser.me/api/portraits/male/47.jpg",
+              "url": "https://randomuser.me/api/portraits/men/47.jpg",
               "isMain": true,
               "description": "Ad quis cillum exercitation minim ea."
             }
@@ -341,7 +341,7 @@
               "DateAdded": "2017-08-05",
               "RecipePhotos": [
                 {
-                  "url": "https://randomuser.me/api/portraits/women/71.jpg",
+                  "url": "https://cdn.pixabay.com/photo/2017/10/30/10/07/birthday-2901945_960_720.jpg",
                   "isMain": true,
                   "description": "Ullamco officia adipisicing ea aute."
                 }

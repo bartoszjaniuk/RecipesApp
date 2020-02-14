@@ -41,5 +41,6 @@ namespace RecipesApp.API.Controllers
 
             return Ok(userToReturn);
         }
+
     }
 }

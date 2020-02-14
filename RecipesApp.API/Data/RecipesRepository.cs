@@ -51,6 +51,16 @@ namespace RecipesApp.API.Data
             return user;
         }
 
+        public async Task<IEnumerable<User>> GetUserRecipes(int id)
+        {
+            var userRecipes = await _context.Users
+            .Include(r => r.Recipes)
+            .ToListAsync();
+            return userRecipes;
+
+
+        }
+
         public async Task<IEnumerable<User>> GetUsers()
         {
             var users = await _context.Users
@@ -59,6 +69,9 @@ namespace RecipesApp.API.Data
             .ToListAsync();
             return users;
         }
+
+
+        
 
         public async Task<bool> SaveAll()
         {

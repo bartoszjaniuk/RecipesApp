@@ -1,0 +1,7 @@
+<div class="container mt-5">
+  <div class="row">
+    <div *ngFor="let recipe of recipes" class="col-md-4 col-sm-6 mb-4">
+      <app-recipes-card [recipe]="recipe"></app-recipes-card>
+    </div>
+  </div>
+</div>
