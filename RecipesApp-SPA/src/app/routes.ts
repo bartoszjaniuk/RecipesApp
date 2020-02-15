@@ -11,6 +11,9 @@ import { MemberDetailResolver } from './_resolvers/member-detail-resolver';
 import { RecipeDetailResolver } from './_resolvers/recipe-detail-resolver';
 import { MemberListResolver } from './_resolvers/member-list-resolver';
 import { RecipeListResolver } from './_resolvers/recipe-list-resolver';
+import { MemberEditComponent } from './members/member-list/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit-resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 export const appRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -22,6 +25,8 @@ export const appRoutes: Routes = [
             {path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}},
             {path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver}},
             {path: 'messages', component: MessagesComponent},
+            {path: 'member/edit', component: MemberEditComponent,
+            resolve: {user: MemberEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             {path: 'lists', component: LikeListsComponent},
             {path: 'recipes', component: RecipesListComponent, resolve: {recipes: RecipeListResolver}},
             {path: 'recipes/:id', component: RecipeDetailComponent, resolve: {recipe: RecipeDetailResolver}},

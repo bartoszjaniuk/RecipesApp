@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -40,6 +42,26 @@ namespace RecipesApp.API.Controllers
             var userToReturn = _mapper.Map<UserForDetailDto>(user);
 
             return Ok(userToReturn);
+        }
+
+
+        [HttpPut("{id}")] // Aktualizacja wartości
+        public async Task <IActionResult> UpdateUser (int id, UserForUpdateDto userForUpdateDto)
+        {
+            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            // tylko zalogowany użytkownik może edytować swój profil
+
+            var userFromRepository = await _repository.GetUser(id);
+
+            _mapper.Map(userForUpdateDto, userFromRepository);
+
+            if( await _repository.SaveAll())
+                return NoContent();
+
+            throw new Exception($"Updating user {id} failed on save");
+            
         }
 
     }

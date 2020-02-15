@@ -42,6 +42,7 @@ namespace RecipesApp.API.Helpers
                     .FirstOrDefault(p => p.IsMain).Url));
 
            CreateMap<RecipePhoto, RecipePhotoForDetailDto>();  
+           CreateMap<UserForUpdateDto, User>();  
         }
     }   
 }
