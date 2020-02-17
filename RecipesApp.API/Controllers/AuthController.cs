@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -18,9 +19,11 @@ namespace RecipesApp.API.Controllers
     {
         private readonly IAuthRepository _repository;
         private readonly IConfiguration _config;
+        private readonly IMapper _mapper;
 
-        public AuthController(IAuthRepository repository, IConfiguration config)
+        public AuthController(IAuthRepository repository, IConfiguration config, IMapper mapper)
         {
+            _mapper = mapper;
             _config = config;
             _repository = repository;
         }
@@ -58,7 +61,7 @@ namespace RecipesApp.API.Controllers
             if (userFromRepository == null)
                 return Unauthorized();
 
-             //  zmienna do przechowywania danych
+            //  zmienna do przechowywania danych
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepository.Id.ToString()),
@@ -85,9 +88,12 @@ namespace RecipesApp.API.Controllers
 
             // utworzenie tokena
             var token = tokenHandler.CreateToken(tokenDescriptor);
+            var user = _mapper.Map<UserForListDto>(userFromRepository);
 
-            return Ok(new {
-                token = tokenHandler.WriteToken(token)
+            return Ok(new
+            {
+                token = tokenHandler.WriteToken(token),
+                user
             });
         }
     }

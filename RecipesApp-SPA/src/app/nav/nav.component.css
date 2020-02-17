@@ -12,3 +12,8 @@
     margin-top: 2.4rem !important;
 }
 
+img {
+    max-height: 50px;
+    border: 1px solid white;
+    display: inline;
+} 

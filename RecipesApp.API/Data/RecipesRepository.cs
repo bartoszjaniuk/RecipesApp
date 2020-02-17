@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RecipesApp.API.Controllers.Models.Data;
@@ -22,6 +23,19 @@ namespace RecipesApp.API.Data
         public void Delete<T>(T entity) where T : class
         {
             _context.Remove(entity);
+        }
+
+        public async Task<UserPhoto> GetMainPhotoForUser(int userId)
+        {
+            return await _context.UserPhotos.Where(u => u.UserId == userId)
+                .FirstOrDefaultAsync(p => p.IsMain);
+        }
+
+        public async Task<UserPhoto> GetPhoto(int id)
+        {
+            var photo = await _context.UserPhotos.FirstOrDefaultAsync(p => p.Id == id);
+
+            return photo;
         }
 
         public async Task<Recipe> GetRecipe(int id)
@@ -51,15 +65,6 @@ namespace RecipesApp.API.Data
             return user;
         }
 
-        public async Task<IEnumerable<User>> GetUserRecipes(int id)
-        {
-            var userRecipes = await _context.Users
-            .Include(r => r.Recipes)
-            .ToListAsync();
-            return userRecipes;
-
-
-        }
 
         public async Task<IEnumerable<User>> GetUsers()
         {
@@ -70,8 +75,15 @@ namespace RecipesApp.API.Data
             return users;
         }
 
+        public async Task<User> GetUserWithRecipes(int id)
+        {
+            var userWithRecipes = await _context.Users.
+                Include(r => r.Recipes)
+                .ThenInclude(r => r.RecipePhotos)
+                .FirstOrDefaultAsync(r => r.Id == id);
 
-        
+            return userWithRecipes;
+        }
 
         public async Task<bool> SaveAll()
         {

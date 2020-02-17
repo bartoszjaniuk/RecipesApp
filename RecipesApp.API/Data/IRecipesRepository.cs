@@ -20,5 +20,10 @@ namespace RecipesApp.API.Data
          Task<User> GetUser(int id);
          Task<IEnumerable<Recipe>> GetRecipes();
          Task<Recipe> GetRecipe(int id);
+         Task<UserPhoto> GetPhoto(int id);
+         Task<User> GetUserWithRecipes(int id);
+
+         Task<UserPhoto> GetMainPhotoForUser(int userId);
+
     }
 }

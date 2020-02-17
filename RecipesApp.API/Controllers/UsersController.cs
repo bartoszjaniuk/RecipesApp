@@ -44,6 +44,16 @@ namespace RecipesApp.API.Controllers
             return Ok(userToReturn);
         }
 
+        [HttpGet("{id}/recipes")]
+        public async Task<IActionResult> GetUserWithRecipes (int id)
+        {
+            var user = await _repository.GetUserWithRecipes(id);
+
+            var userToReturn = _mapper.Map<UserForRecipeDto>(user);
+
+            return Ok(userToReturn);
+        }
+
 
         [HttpPut("{id}")] // Aktualizacja wartości
         public async Task <IActionResult> UpdateUser (int id, UserForUpdateDto userForUpdateDto)
@@ -57,7 +67,7 @@ namespace RecipesApp.API.Controllers
 
             _mapper.Map(userForUpdateDto, userFromRepository);
 
-            if( await _repository.SaveAll())
+            if(await _repository.SaveAll())
                 return NoContent();
 
             throw new Exception($"Updating user {id} failed on save");

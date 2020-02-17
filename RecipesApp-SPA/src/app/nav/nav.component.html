@@ -1,8 +1,9 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/home']" >Recipes App</a>
-
+      
     <ul class="navbar-nav mr-auto" *ngIf="loggedIn()">
+
       <li class="nav-item " routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/members']">Matches</a>
       </li>
@@ -22,6 +23,9 @@
     
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
       <a class="dropdown-toggle text-light" dropdownToggle>
+        <span class="mr-3">
+          <img src="{{photoUrl}}" alt="">
+        </span>
         Welcome {{authService.decodedToken?.unique_name | titlecase}}
       </a>
     

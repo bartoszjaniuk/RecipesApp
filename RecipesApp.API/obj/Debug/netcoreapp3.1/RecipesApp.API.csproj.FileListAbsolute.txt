@@ -68,3 +68,4 @@ C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\Microsoft.AspNe
 C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\janiu\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\CloudinaryDotNet.dll
