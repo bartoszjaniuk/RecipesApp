@@ -12,6 +12,7 @@ import { Recipe } from 'src/app/_models/recipe';
 })
 export class MemberDetailComponent implements OnInit {
   user: User;
+  recipes: Recipe[];
 
   constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute) { }
 

@@ -32,8 +32,8 @@ import { RecipeListResolver } from './_resolvers/recipe-list-resolver';
 import { MemberEditComponent } from './members/member-list/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit-resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
-import { MemberRecipesDetailResolver } from './_resolvers/member-recipes-detail-resolver';
 import { PhotoEditorComponent } from './members/member-list/photo-editor/photo-editor.component';
+import { MemberRecipeCardComponent } from './members/member-list/member-recipe-card/member-recipe-card.component';
 
 
 
@@ -63,7 +63,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberDetailComponent,
       RecipeDetailComponent,
       MemberEditComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
+      MemberRecipeCardComponent
    ],
    imports: [
       BrowserModule,
@@ -91,7 +92,6 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberListResolver,
       RecipeListResolver,
       MemberEditResolver,
-      MemberRecipesDetailResolver,
       PreventUnsavedChanges,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],

@@ -31,7 +31,64 @@
               "description": "Sit aliquip deserunt duis id."
             }
           ]
+        },
+        {
+          "Name": "Kebab",
+          "Ingredients": "Only Chicken and Pommes Frites baby",
+          "PreparationTime": 30,
+          "Description": "Dolore cupidatat in duis non ex excepteur commodo anim duis quis proident. Labore officia id voluptate fugiat deserunt aliquip. Cillum sint velit adipisicing aliquip nostrud mollit dolore veniam. Voluptate ad eiusmod aliqua qui. Sit nisi velit nostrud duis nostrud qui dolore veniam.\r\n",
+          "DateAdded": "2017-04-03",
+          "RecipePhotos": [
+            {
+              "url": "https://poradyfit.pl/wp-content/uploads/2017/08/elk-kebab-hejt.jpeg",
+              "isMain": true,
+              "description": "Fugiat minim consectetur amet nostrud cillum proident aliquip incididunt excepteur ad ad."
+            }
+          ]
+        },
+        {
+          "Name": "Erin",
+          "Ingredients": "Only Chicken and Pommes Frites baby",
+          "PreparationTime": 30,
+          "Description": "Incididunt non excepteur velit cupidatat veniam id laboris mollit cupidatat. Cupidatat fugiat ut Lorem tempor Lorem non. Voluptate occaecat non voluptate ut nostrud culpa adipisicing laboris labore in irure nisi. Nisi adipisicing labore dolor amet excepteur magna et officia enim duis et. Aute laboris duis dolore proident sint commodo non elit voluptate reprehenderit.\r\n",
+          "DateAdded": "2017-06-17",
+          "RecipePhotos": [
+            {
+              "url": "https://cdn.pixabay.com/photo/2015/11/02/20/27/taco-1018962_960_720.jpg",
+              "isMain": true,
+              "description": "Fugiat sunt cupidatat dolor anim dolore sunt."
+            }
+          ]
+        },
+        {
+          "Name": "Tortollieni",
+          "Ingredients": "Only Chicken and Pommes Frites baby",
+          "PreparationTime": 30,
+          "Description": "Incididunt non excepteur velit cupidatat veniam id laboris mollit cupidatat. Cupidatat fugiat ut Lorem tempor Lorem non. Voluptate occaecat non voluptate ut nostrud culpa adipisicing laboris labore in irure nisi. Nisi adipisicing labore dolor amet excepteur magna et officia enim duis et. Aute laboris duis dolore proident sint commodo non elit voluptate reprehenderit.\r\n",
+          "DateAdded": "2017-06-17",
+          "RecipePhotos": [
+            {
+              "url": "https://www.winiary.pl/image.ashx/tortellini-z-szynka-i-pieczarkami.jpg?fileID=232005&width=800&height=1400&frame=False&bg=0&resize=1&crop=0&hRefill=0&vRefill=0&quality=84",
+              "isMain": true,
+              "description": "Fugiat sunt cupidatat dolor anim dolore sunt."
+            }
+          ]
+        },
+        {
+          "Name": "Pierogi",
+          "Ingredients": "Only Chicken and Pommes Frites baby",
+          "PreparationTime": 30,
+          "Description": "Incididunt non excepteur velit cupidatat veniam id laboris mollit cupidatat. Cupidatat fugiat ut Lorem tempor Lorem non. Voluptate occaecat non voluptate ut nostrud culpa adipisicing laboris labore in irure nisi. Nisi adipisicing labore dolor amet excepteur magna et officia enim duis et. Aute laboris duis dolore proident sint commodo non elit voluptate reprehenderit.\r\n",
+          "DateAdded": "2017-06-17",
+          "RecipePhotos": [
+            {
+              "url": "https://akademiasmaku.pl/upload/recipes/4370/tradycyjne-pierogi-ruskie-4370.jpg",
+              "isMain": true,
+              "description": "Fugiat sunt cupidatat dolor anim dolore sunt."
+            }
+          ]
         }
+
       ]
     },
     {

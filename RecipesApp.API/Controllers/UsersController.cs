@@ -44,16 +44,6 @@ namespace RecipesApp.API.Controllers
             return Ok(userToReturn);
         }
 
-        [HttpGet("{id}/recipes")]
-        public async Task<IActionResult> GetUserWithRecipes (int id)
-        {
-            var user = await _repository.GetUserWithRecipes(id);
-
-            var userToReturn = _mapper.Map<UserForRecipeDto>(user);
-
-            return Ok(userToReturn);
-        }
-
 
         [HttpPut("{id}")] // Aktualizacja wartości
         public async Task <IActionResult> UpdateUser (int id, UserForUpdateDto userForUpdateDto)

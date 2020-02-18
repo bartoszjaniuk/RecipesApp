@@ -22,5 +22,6 @@ export class MemberDetailResolver implements Resolve<User> {
                 return of(null);
             })
         );
+
     }
 }

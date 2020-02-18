@@ -61,6 +61,7 @@ namespace RecipesApp.API.Data
              var user = await _context.Users
              .Include(p => p.UserPhotos)
              .Include(r => r.Recipes)
+                .ThenInclude(r => r.RecipePhotos)
              .FirstOrDefaultAsync(r => r.Id == id);
             return user;
         }
@@ -73,16 +74,6 @@ namespace RecipesApp.API.Data
             .Include(r => r.Recipes)
             .ToListAsync();
             return users;
-        }
-
-        public async Task<User> GetUserWithRecipes(int id)
-        {
-            var userWithRecipes = await _context.Users.
-                Include(r => r.Recipes)
-                .ThenInclude(r => r.RecipePhotos)
-                .FirstOrDefaultAsync(r => r.Id == id);
-
-            return userWithRecipes;
         }
 
         public async Task<bool> SaveAll()
