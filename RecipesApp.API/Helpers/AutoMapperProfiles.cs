@@ -47,12 +47,12 @@ namespace RecipesApp.API.Helpers
            CreateMap<UserPhoto, PhotoForReturnDto>();  
            CreateMap<PhotoForCreationDto, UserPhoto>();  
 
-
-
-
-         
-
            CreateMap<User, UserForRecipeDto>();
+
+
+           CreateMap<UserForRegisterDto, User>();
+
+
               
             
 

@@ -34,7 +34,7 @@ namespace RecipesApp.API.Controllers
             return Ok(usersToReturn);
         }
 
-        [HttpGet("{id}")] // Pobieranie wartości
+        [HttpGet("{id}", Name = "GetUser")] // Pobieranie wartości
         public async Task<IActionResult> GetUser (int id)
         {
             var user = await _repository.GetUser(id);
