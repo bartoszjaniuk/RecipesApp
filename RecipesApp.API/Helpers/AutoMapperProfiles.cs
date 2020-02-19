@@ -52,6 +52,9 @@ namespace RecipesApp.API.Helpers
 
            CreateMap<UserForRegisterDto, User>();
 
+           CreateMap<Recipe, RecipeForDetailDto>();
+           CreateMap<RecipeForCreateDto, Recipe>();
+
 
               
             

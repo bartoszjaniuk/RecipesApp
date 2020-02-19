@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.API.Data;
 using RecipesApp.API.Dtos;
+using RecipesApp.API.Models;
 
 namespace RecipesApp.API.Controllers
 {
@@ -64,5 +65,31 @@ namespace RecipesApp.API.Controllers
             
         }
 
+        
+        [HttpPost("{userId}/addNewRecipe")]
+        public async Task<IActionResult> AddNewRecipe(int userId, [FromBody]RecipeForCreateDto recipeForCreateDto)
+        {
+
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var userFromRepo = await _repository.GetUser(userId);
+
+            recipeForCreateDto.Name = recipeForCreateDto.Name.ToLower();
+
+            if (await _repository.RecipeExists(recipeForCreateDto.Name))
+                return BadRequest("Recipe with that name already exists!");
+
+            var recipeToCreate = _mapper.Map<Recipe>(recipeForCreateDto);
+
+            recipeToCreate.UserId = userId;
+
+            var createdRecipe = await _repository.AddNewRecipe(recipeToCreate);
+            
+            var recipeToReturn = _mapper.Map<RecipeForDetailDto>(createdRecipe);
+            
+            return CreatedAtRoute("GetUser", new {controller = "Users", userId = userId, id = createdRecipe.Id}, recipeToReturn);          
+        }
     }
+    
 }

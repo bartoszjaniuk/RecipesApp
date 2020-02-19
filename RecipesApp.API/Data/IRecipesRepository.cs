@@ -23,5 +23,8 @@ namespace RecipesApp.API.Data
          Task<UserPhoto> GetPhoto(int id);
          Task<UserPhoto> GetMainPhotoForUser(int userId);
 
+         Task<Recipe> AddNewRecipe(Recipe recipe);
+         Task<bool> RecipeExists(string name);
+
     }
 }

@@ -32,7 +32,7 @@ namespace RecipesApp.API.Controllers
             return Ok(recipesToReturn);
         }
 
-        [HttpGet("{id}")] // Pobieranie wartości
+        [HttpGet("{id}", Name = "GetRecipe")] // Pobieranie wartości
         public async Task<IActionResult> GetRecipe (int id)
         {
             var recipe = await _repository.GetRecipe(id);
@@ -41,5 +41,5 @@ namespace RecipesApp.API.Controllers
 
             return Ok(recipeToReturn);
         }
-    }
+   }
 }

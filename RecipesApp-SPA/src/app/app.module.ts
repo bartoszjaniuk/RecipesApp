@@ -34,6 +34,7 @@ import { MemberEditResolver } from './_resolvers/member-edit-resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/member-list/photo-editor/photo-editor.component';
 import { MemberRecipeCardComponent } from './members/member-list/member-recipe-card/member-recipe-card.component';
+import { AddRecipeComponent } from './recipes/recipes-list/add-recipe/add-recipe.component';
 
 
 
@@ -64,7 +65,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       RecipeDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,
-      MemberRecipeCardComponent
+      MemberRecipeCardComponent,
+      AddRecipeComponent
    ],
    imports: [
       BrowserModule,

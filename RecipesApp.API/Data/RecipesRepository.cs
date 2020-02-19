@@ -80,5 +80,23 @@ namespace RecipesApp.API.Data
         {
            return await _context.SaveChangesAsync() > 0;
         }
+
+          public async Task<Recipe> AddNewRecipe(Recipe recipe)
+        {   
+            await _context.Recipes.AddAsync(recipe);
+            await _context.SaveChangesAsync();
+
+            return recipe;
+        }
+
+        public async Task<bool> RecipeExists(string name)
+        {
+            if(await _context.Recipes.AnyAsync(r => r.Name == name))
+                return true;
+
+            return false;           
+        }
+        
     }
+    
 }

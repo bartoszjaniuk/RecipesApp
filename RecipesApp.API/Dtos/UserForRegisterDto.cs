@@ -5,7 +5,7 @@ namespace RecipesApp.API.Dtos
 {
     public class UserForRegisterDto
     {
-          [Required]
+        [Required]
         public string Username { get; set; }
 
         [Required]

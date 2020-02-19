@@ -14,6 +14,7 @@ import { RecipeListResolver } from './_resolvers/recipe-list-resolver';
 import { MemberEditComponent } from './members/member-list/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit-resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { AddRecipeComponent } from './recipes/recipes-list/add-recipe/add-recipe.component';
 
 
 export const appRoutes: Routes = [
@@ -31,6 +32,7 @@ export const appRoutes: Routes = [
             {path: 'lists', component: LikeListsComponent},
             {path: 'recipes', component: RecipesListComponent, resolve: {recipes: RecipeListResolver}},
             {path: 'recipes/:id', component: RecipeDetailComponent, resolve: {recipe: RecipeDetailResolver}},
+            {path: 'recipe-add', component: AddRecipeComponent},
         ]
     },
     {path: '**', redirectTo: '', pathMatch: 'full'},
