@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -9,6 +10,7 @@ using RecipesApp.API.Dtos;
 namespace RecipesApp.API.Controllers
 {
     [Authorize]
+    [Route("api/users/{userId}/recipes")]
     [Route("api/[controller]")]
     [ApiController]
     public class RecipesController : ControllerBase
@@ -21,7 +23,7 @@ namespace RecipesApp.API.Controllers
             _repository = repository;
             _mapper = mapper;
         }
-
+        
         [HttpGet] // Pobieranie wartości
         public async Task<IActionResult> GetRecipes ()
         {
@@ -32,7 +34,8 @@ namespace RecipesApp.API.Controllers
             return Ok(recipesToReturn);
         }
 
-        [HttpGet("{id}", Name = "GetRecipe")] // Pobieranie wartości
+        [Route("api/recipes/{id}")]
+        [HttpGet("{id}")] // Pobieranie wartości
         public async Task<IActionResult> GetRecipe (int id)
         {
             var recipe = await _repository.GetRecipe(id);
@@ -41,5 +44,27 @@ namespace RecipesApp.API.Controllers
 
             return Ok(recipeToReturn);
         }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRecipe(int userId, int id)
+        {
+    
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var recipeFromRepo = await _repository.GetRecipe(id);
+
+            recipeFromRepo.UserId = userId;
+            
+            _repository.Delete(recipeFromRepo); 
+
+            if (await _repository.SaveAll())
+                return Ok();
+
+            return BadRequest("Failed to delete the recipe");
+        }
+        
+        
    }
 }

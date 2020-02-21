@@ -27,8 +27,12 @@ getRecipes(): Observable<Recipe[]> {
   return this.http.get<Recipe[]>(this.baseUrl + 'recipes', httpOptions);
 }
 
-getRecipe(id): Observable<Recipe> {
+getRecipe(id: number): Observable<Recipe> {
   return this.http.get<Recipe>(this.baseUrl + 'recipes/' + id, httpOptions);
+}
+
+addNewRecipe(userId: number, recipe: Recipe) {
+  return this.http.post(this.baseUrl + 'users/' + userId + '/addNewRecipe', recipe);
 }
 
 }
