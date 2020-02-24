@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace RecipesApp.API.Controllers
             return Ok(recipeToReturn);
         }
 
-
+        // http://localhost:5000/api/users/{userId}/recipes/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRecipe(int userId, int id)
         {
@@ -63,6 +64,28 @@ namespace RecipesApp.API.Controllers
                 return Ok();
 
             return BadRequest("Failed to delete the recipe");
+        }
+
+
+
+        [HttpPut("{id}")] // Aktualizacja wartości
+        // http://localhost:5000/api/users/{userId}/recipes/{id}
+        public async Task <IActionResult> UpdateRecipe (int userId, int id, RecipeForUpdateDto recipeForUpdateDto)
+        {
+      
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+            // tylko zalogowany użytkownik może edytować swój profil
+
+            var recipeFromRepo = await _repository.GetRecipe(id);
+
+            _mapper.Map(recipeForUpdateDto, recipeFromRepo);
+
+            if(await _repository.SaveAll())
+                return NoContent();
+
+            throw new Exception($"Updating recipe {id} failed on save");
+            
         }
         
         

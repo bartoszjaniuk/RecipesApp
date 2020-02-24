@@ -15,6 +15,8 @@ import { MemberEditComponent } from './members/member-list/member-edit/member-ed
 import { MemberEditResolver } from './_resolvers/member-edit-resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { AddRecipeComponent } from './recipes/recipes-list/add-recipe/add-recipe.component';
+import { RecipeEditComponent } from './recipes/recipes-list/recipe-edit/recipe-edit.component';
+import { RecipeEditResolver } from './_resolvers/recipe-edit-resolver';
 
 
 export const appRoutes: Routes = [
@@ -33,6 +35,7 @@ export const appRoutes: Routes = [
             {path: 'recipes', component: RecipesListComponent, resolve: {recipes: RecipeListResolver}},
             {path: 'recipes/:id', component: RecipeDetailComponent, resolve: {recipe: RecipeDetailResolver}},
             {path: 'recipe-add', component: AddRecipeComponent},
+            {path: 'recipe/edit/:id', component: RecipeEditComponent, resolve: {recipe: RecipeEditResolver}},
         ]
     },
     {path: '**', redirectTo: '', pathMatch: 'full'},

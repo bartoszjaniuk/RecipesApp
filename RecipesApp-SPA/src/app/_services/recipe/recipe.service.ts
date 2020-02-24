@@ -35,4 +35,12 @@ addNewRecipe(userId: number, recipe: Recipe) {
   return this.http.post(this.baseUrl + 'users/' + userId + '/addNewRecipe', recipe);
 }
 
+deleteRecipe(userId: number, id: number) {
+  return this.http.delete(this.baseUrl + 'users/' + userId + '/recipes/' + id);
+}
+
+editRecipe(userId: number, id: number, recipe: Recipe) {
+  return this.http.put(this.baseUrl + 'users/' + userId + '/recipes/' + id, recipe);
+}
+
 }

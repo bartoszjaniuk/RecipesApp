@@ -13,7 +13,6 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 export class RecipeDetailComponent implements OnInit {
 
   recipe: Recipe;
-
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 

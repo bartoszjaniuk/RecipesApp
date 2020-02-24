@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using RecipesApp.API.Models;
 
 namespace RecipesApp.API.Dtos
 {
