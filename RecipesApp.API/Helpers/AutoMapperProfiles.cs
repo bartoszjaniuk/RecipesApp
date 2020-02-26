@@ -28,7 +28,14 @@ namespace RecipesApp.API.Helpers
            CreateMap<UserPhoto, UserPhotoForDetailDto>();
 
 
-           //_______________________________________________
+           CreateMap<UserForUpdateDto, User>();  
+
+           CreateMap<UserPhoto, PhotoForReturnDto>();
+
+           CreateMap<PhotoForCreationDto, UserPhoto>();
+
+
+           //_________________RECIPE_________________________//
 
 
            CreateMap<Recipe, RecipeForListDto>()
@@ -36,21 +43,23 @@ namespace RecipesApp.API.Helpers
                 .MapFrom(src => src.RecipePhotos
                     .FirstOrDefault(p => p.IsMain).Url));
 
+           //DETAIL
            CreateMap<Recipe, RecipeForDetailDto>()
             .ForMember(dest => dest.PhotoUrl, opt => opt
                 .MapFrom(src => src.RecipePhotos
                     .FirstOrDefault(p => p.IsMain).Url));
 
            CreateMap<RecipePhoto, RecipePhotoForDetailDto>();  
-           CreateMap<UserForUpdateDto, User>();  
 
-           CreateMap<UserPhoto, PhotoForReturnDto>();  
-           CreateMap<PhotoForCreationDto, UserPhoto>();  
+           // CLOUDINARY //
+           CreateMap<RecipePhoto, PhotoForReturnDto>(); 
+           CreateMap<PhotoForCreationDto, RecipePhoto>();
+           // ..........//
 
 
            CreateMap<UserForRegisterDto, User>();
 
-           //DETAIL
+           
            //CREATE
            CreateMap<RecipeForCreateDto, Recipe>();
            //UPDATE

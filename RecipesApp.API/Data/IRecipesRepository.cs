@@ -16,15 +16,22 @@ namespace RecipesApp.API.Data
          void Add<T>(T entity) where T: class;
          void Delete<T>(T entity) where T: class;
          Task<bool> SaveAll();
+
+         // USERS //
          Task<IEnumerable<User>> GetUsers();
          Task<User> GetUser(int id);
-         Task<IEnumerable<Recipe>> GetRecipes();
-         Task<Recipe> GetRecipe(int id);
+
          Task<UserPhoto> GetPhoto(int id);
          Task<UserPhoto> GetMainPhotoForUser(int userId);
 
+         // RECIPES //
+         Task<IEnumerable<Recipe>> GetRecipes();
+         Task<Recipe> GetRecipe(int id);
          Task<Recipe> AddNewRecipe(Recipe recipe);
          Task<bool> RecipeExists(string name);
+
+         Task<RecipePhoto> GetRecipePhoto(int id);
+         Task<RecipePhoto> GetMainPhotoForRecipe(int recipeId);
 
     }
 }

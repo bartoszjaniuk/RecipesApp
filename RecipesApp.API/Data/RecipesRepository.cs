@@ -25,36 +25,6 @@ namespace RecipesApp.API.Data
             _context.Remove(entity);
         }
 
-        public async Task<UserPhoto> GetMainPhotoForUser(int userId)
-        {
-            return await _context.UserPhotos.Where(u => u.UserId == userId)
-                .FirstOrDefaultAsync(p => p.IsMain);
-        }
-
-        public async Task<UserPhoto> GetPhoto(int id)
-        {
-            var photo = await _context.UserPhotos.FirstOrDefaultAsync(p => p.Id == id);
-
-            return photo;
-        }
-
-        public async Task<Recipe> GetRecipe(int id)
-        {
-            var recipe = await _context.Recipes
-            .Include(p => p.RecipePhotos)
-            .Include(u => u.User)
-            .FirstOrDefaultAsync(r => r.Id == id);
-            return recipe;
-        }
-
-        public async Task<IEnumerable<Recipe>> GetRecipes()
-        {
-            var recipes = await _context.Recipes
-            .Include(p => p.RecipePhotos)
-            .Include(u => u.User)
-            .ToListAsync();
-            return recipes;
-        }
 
         public async Task<User> GetUser(int id)
         {
@@ -75,6 +45,43 @@ namespace RecipesApp.API.Data
             .ToListAsync();
             return users;
         }
+        public async Task<UserPhoto> GetMainPhotoForUser(int userId)
+        {
+            return await _context.UserPhotos.Where(u => u.UserId == userId)
+                .FirstOrDefaultAsync(p => p.IsMain);
+        }
+
+        public async Task<UserPhoto> GetPhoto(int id)
+        {
+            var photo = await _context.UserPhotos.FirstOrDefaultAsync(p => p.Id == id);
+
+            return photo;
+        }
+
+
+        
+
+         //.................... RECIPES........................................... //
+
+        public async Task<Recipe> GetRecipe(int id)
+        {
+            var recipe = await _context.Recipes
+            .Include(p => p.RecipePhotos)
+            .Include(u => u.User)
+            .FirstOrDefaultAsync(r => r.Id == id);
+            return recipe;
+        }
+
+        public async Task<IEnumerable<Recipe>> GetRecipes()
+        {
+            var recipes = await _context.Recipes
+            .Include(p => p.RecipePhotos)
+            .Include(u => u.User)
+            .ToListAsync();
+            return recipes;
+        }
+
+        
 
         public async Task<bool> SaveAll()
         {
@@ -96,7 +103,19 @@ namespace RecipesApp.API.Data
 
             return false;           
         }
-        
+
+        public async Task<RecipePhoto> GetRecipePhoto(int id)
+        {
+            var photo = await _context.RecipePhotos.FirstOrDefaultAsync(p => p.Id == id);
+
+            return photo;
+        }
+
+        public async Task<RecipePhoto> GetMainPhotoForRecipe(int recipeId)
+        {
+            return await _context.RecipePhotos.Where(u => u.RecipeId == recipeId)
+                .FirstOrDefaultAsync(p => p.IsMain);
+        }
     }
     
 }
