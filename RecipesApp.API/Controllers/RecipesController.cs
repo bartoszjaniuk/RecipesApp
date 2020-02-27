@@ -17,8 +17,7 @@ using RecipesApp.API.Models;
 namespace RecipesApp.API.Controllers
 {
     [Authorize]
-    [Route("api/users/{userId}/recipes/{recipeId}/photos")]
-    [Route("api/users/{userId}/recipes")]
+    [Route("/api/users/{userId}/[controller]")]
     [Route("api/[controller]")]
     [ApiController]
     public class RecipesController : ControllerBase
@@ -106,13 +105,13 @@ namespace RecipesApp.API.Controllers
 
         }
         // http://localhost:5000/api/users/{userId}/recipes/{id}
-        [HttpPost]
+         [HttpPost("{recipeId}/photos")]
         public async Task<IActionResult> AddPhotoForRecipe(int userId, int recipeId,
             [FromForm]PhotoForCreationDto photoForCreationDto)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
-            
+
             var photoFromRepo = await _repository.GetRecipe(recipeId);
 
             var file = photoForCreationDto.File;
@@ -151,6 +150,73 @@ namespace RecipesApp.API.Controllers
             }
 
             return BadRequest("Could not add the photo");
+        }
+
+
+        [HttpDelete("{recipeId}/photos/{id}")]
+        public async Task<IActionResult> DeletePhoto(int recipeId, int id)
+        {
+           
+
+            var recipe = await _repository.GetRecipe(recipeId);
+
+            if (!recipe.RecipePhotos.Any(p => p.Id == id))
+                return Unauthorized();
+
+            var photoFromRepo = await _repository.GetRecipePhoto(id);
+
+            if (photoFromRepo.IsMain)
+                return BadRequest("You cannot delete your main photo");
+
+            if (photoFromRepo.PublicId != null)
+            {
+                var deleteParams = new DeletionParams(photoFromRepo.PublicId);
+
+                var result = _cloudinary.Destroy(deleteParams);
+
+                if (result.Result == "ok")
+                {
+                    _repository.Delete(photoFromRepo);
+                }
+            }
+
+            if (photoFromRepo.PublicId == null)
+            {
+                _repository.Delete(photoFromRepo);
+            }
+
+            if (await _repository.SaveAll())
+                return Ok();
+
+            return BadRequest("Failed to delete the photo");
+        }
+
+
+
+        [HttpPost("{recipeId}/photos/{id}/setMain")]
+        public async Task<IActionResult> SetMainPhoto(int recipeId, int id)
+        {
+            
+
+            var recipe = await _repository.GetRecipe(recipeId);
+
+            if (!recipe.RecipePhotos.Any(p => p.Id == id))
+                return Unauthorized();
+
+            var photoFromRepo = await _repository.GetRecipePhoto(id);
+
+            if (photoFromRepo.IsMain)
+                return BadRequest("This is already the main photo");
+
+            var currentMainPhoto = await _repository.GetMainPhotoForRecipe(recipeId);
+            currentMainPhoto.IsMain = false;
+
+            photoFromRepo.IsMain = true;
+
+            if (await _repository.SaveAll())
+                return NoContent();
+
+            return BadRequest("Could not set photo to main");
         }
 
     }
