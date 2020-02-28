@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Recipe } from 'src/app/_models/recipe';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 
 
@@ -18,9 +18,16 @@ const httpOptions = {
 })
 export class RecipeService {
 
-baseUrl = environment.apiUrl;
+  currentRecipe: Recipe;
+  photoUrl = new BehaviorSubject<string> ('../../assets/image.png');
+  currentPhotoUrl = this.photoUrl.asObservable();
+  baseUrl = environment.apiUrl;
 
 constructor(private http: HttpClient) { }
+
+changeRecipePhoto(photoUrl: string) {
+  this.photoUrl.next(photoUrl);
+}
 
 
 getRecipes(): Observable<Recipe[]> {
@@ -43,4 +50,8 @@ editRecipe(userId: number, id: number, recipe: Recipe) {
   return this.http.put(this.baseUrl + 'users/' + userId + '/recipes/' + id, recipe);
 }
 
+deletePhoto(userId: number, recipeId: number, id: number) {
+  return this.http.delete(this.baseUrl + 'users/' + userId + '/recipes/' + recipeId + '/photos/' + id);
+}
+// http://localhost:5000/api/users/1/recipes/1/photos/17
 }
