@@ -22,7 +22,6 @@ export class RecipeEditComponent implements OnInit {
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   currentMain: RecipePhoto;
-
   constructor(private route: ActivatedRoute, private recipeService: RecipeService, private authService: AuthService,
               private alertify: AlertifyService) { }
 
@@ -87,6 +86,23 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
+  setMainPhoto(photo: RecipePhoto) {
+    this.recipeService.setMainPhoto(this.authService.decodedToken.nameid, this.recipe.id, photo.id)
+    .subscribe(() => {
+    this.currentMain = this.recipe.recipePhotos.filter(p => p.isMain === true)[0];
+    if (this.currentMain) {
+      this.currentMain.isMain = false;
+      photo.isMain = true;
+      this.alertify.success('Succesfully changed main photo');
+    }
+    // this.recipeService.changeRecipePhoto(photo.url);
+    // this.recipeService.currentRecipe.photoUrl = photo.url;
+    // this.recipe = this.recipeService.currentRecipe;
+  }, error => {
+    this.alertify.error(error);
+  });
+}
+
   deletePhoto(id: number) {
     this.alertify.confirm('Are you sure you want to delete this photo?', () => {
       this.recipeService.deletePhoto(this.authService.decodedToken.nameid, this.recipe.id, id).subscribe(() => {
@@ -97,5 +113,8 @@ export class RecipeEditComponent implements OnInit {
       });
     });
   }
+
+
+
 
 }

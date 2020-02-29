@@ -50,8 +50,15 @@ editRecipe(userId: number, id: number, recipe: Recipe) {
   return this.http.put(this.baseUrl + 'users/' + userId + '/recipes/' + id, recipe);
 }
 
+// http://localhost:5000/api/users/1/recipes/1/photos/17
 deletePhoto(userId: number, recipeId: number, id: number) {
   return this.http.delete(this.baseUrl + 'users/' + userId + '/recipes/' + recipeId + '/photos/' + id);
 }
-// http://localhost:5000/api/users/1/recipes/1/photos/17
+
+
+// http://localhost:5000/api/users/1/recipes/1/photos/16/setMain
+setMainPhoto(userId: number, recipeId: number, id: number) {
+  return this.http.post(this.baseUrl + 'users/' + userId + '/recipes/' + recipeId + '/photos/' + id + '/setMain', {});
+}
+
 }
