@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecipesApp.API.Data;
 using RecipesApp.API.Dtos;
+using RecipesApp.API.Helpers;
 using RecipesApp.API.Models;
 
 namespace RecipesApp.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]

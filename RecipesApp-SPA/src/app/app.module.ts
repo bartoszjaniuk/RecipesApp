@@ -38,6 +38,7 @@ import { AddRecipeComponent } from './recipes/recipes-list/add-recipe/add-recipe
 import { RecipeEditorComponent } from './members/member-list/recipe-editor/recipe-editor.component';
 import { RecipeEditComponent } from './recipes/recipes-list/recipe-edit/recipe-edit.component';
 import { RecipeEditResolver } from './_resolvers/recipe-edit-resolver';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 
 
@@ -71,7 +72,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberRecipeCardComponent,
       AddRecipeComponent,
       RecipeEditorComponent,
-      RecipeEditComponent
+      RecipeEditComponent,
+      TimeAgoPipe
    ],
    imports: [
       BrowserModule,
