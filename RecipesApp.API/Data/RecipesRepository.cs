@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RecipesApp.API.Controllers.Models.Data;
+using RecipesApp.API.Helpers;
 using RecipesApp.API.Models;
 
 namespace RecipesApp.API.Data
@@ -37,13 +39,39 @@ namespace RecipesApp.API.Data
         }
 
 
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<PagedList<User>> GetUsers(UserParams userParams)
         {
-            var users = await _context.Users
+            var users =  _context.Users
             .Include(p => p.UserPhotos)
-            .Include(r => r.Recipes)
-            .ToListAsync();
-            return users;
+            .Include(r => r.Recipes).OrderByDescending(u => u.LastActive).AsQueryable();
+            
+            users = users.Where(u => u.Id != userParams.UserId);
+            
+            users = users.Where(u => u.Gender == userParams.Gender);
+
+            if (userParams.MinAge != 18 || userParams.MaxAge != 99)
+           {
+               var minDateOfBirth = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+               var maxDateOfBirth = DateTime.Today.AddYears(-userParams.MinAge);
+
+               users = users.Where(u => u.DateOfBirth >= minDateOfBirth && u.DateOfBirth <= maxDateOfBirth);
+           }
+
+            if(!string.IsNullOrEmpty(userParams.OrderBy))
+            {
+                switch(userParams.OrderBy)
+                {
+                    case "created":
+                        users = users.OrderByDescending(u => u.Created);
+                        break;
+                        default:
+                        users = users.OrderByDescending(u=> u.LastActive);
+                        break;
+                }
+            }
+
+            
+            return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }
         public async Task<UserPhoto> GetMainPhotoForUser(int userId)
         {
@@ -116,6 +144,18 @@ namespace RecipesApp.API.Data
             return await _context.RecipePhotos.Where(u => u.RecipeId == recipeId)
                 .FirstOrDefaultAsync(p => p.IsMain);
         }
+
+        public async Task<FavouriteRecipe> AddToFav(int userId, int recipeId)
+        {
+            return await _context.FavouriteRecipes.FirstOrDefaultAsync(u => u.UserId == userId && u.RecipeId == recipeId);
+        }
+
+        public async Task<Like> GetLike(int userId, int recipientId)
+        {
+            return await _context.Likes.FirstOrDefaultAsync(u => u.LikerId == userId && u.LikeeId == recipientId);
+        }
+
+       
     }
     
 }

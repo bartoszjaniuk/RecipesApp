@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RecipesApp.API.Helpers;
 using RecipesApp.API.Models;
 
 namespace RecipesApp.API.Data
@@ -18,17 +19,22 @@ namespace RecipesApp.API.Data
          Task<bool> SaveAll();
 
          // USERS //
-         Task<IEnumerable<User>> GetUsers();
+         Task<PagedList<User>> GetUsers(UserParams userParams);
          Task<User> GetUser(int id);
 
          Task<UserPhoto> GetPhoto(int id);
          Task<UserPhoto> GetMainPhotoForUser(int userId);
 
+         Task<Like> GetLike(int userId, int recipientId);
+
          // RECIPES //
          Task<IEnumerable<Recipe>> GetRecipes();
          Task<Recipe> GetRecipe(int id);
          Task<Recipe> AddNewRecipe(Recipe recipe);
+         
          Task<bool> RecipeExists(string name);
+
+         Task<FavouriteRecipe> AddToFav(int userId, int recipeId);
 
          Task<RecipePhoto> GetRecipePhoto(int id);
          Task<RecipePhoto> GetMainPhotoForRecipe(int recipeId);

@@ -233,7 +233,7 @@
     },
         {
           "Username": "Roy",
-          "Gender": "female",
+          "Gender": "male",
           "DateOfBirth": "1971-07-12",
           "Password": "password",
           "KnownAs": "Roy",
@@ -268,7 +268,7 @@
         },
         {
           "Username": "Baldwin",
-          "Gender": "female",
+          "Gender": "male",
           "DateOfBirth": "1958-07-27",
           "Password": "password",
           "KnownAs": "Baldwin",
@@ -303,7 +303,7 @@
         },
         {
           "Username": "Morin",
-          "Gender": "female",
+          "Gender": "male",
           "DateOfBirth": "1979-02-03",
           "Password": "password",
           "KnownAs": "Morin",
@@ -338,7 +338,7 @@
         },
         {
           "Username": "Guthrie",
-          "Gender": "female",
+          "Gender": "male",
           "DateOfBirth": "1993-09-07",
           "Password": "password",
           "KnownAs": "Guthrie",
@@ -373,7 +373,7 @@
         },
         {
           "Username": "Mayer",
-          "Gender": "female",
+          "Gender": "male",
           "DateOfBirth": "1983-05-09",
           "Password": "password",
           "KnownAs": "Mayer",

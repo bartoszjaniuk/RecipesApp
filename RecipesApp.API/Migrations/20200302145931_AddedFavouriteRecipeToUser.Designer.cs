@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipesApp.API.Controllers.Models.Data;
 
 namespace RecipesApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200302145931_AddedFavouriteRecipeToUser")]
+    partial class AddedFavouriteRecipeToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,21 +48,6 @@ namespace RecipesApp.API.Migrations
                     b.HasIndex("RecipeId");
 
                     b.ToTable("FavouriteRecipes");
-                });
-
-            modelBuilder.Entity("RecipesApp.API.Models.Like", b =>
-                {
-                    b.Property<int>("LikerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("LikeeId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("LikerId", "LikeeId");
-
-                    b.HasIndex("LikeeId");
-
-                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("RecipesApp.API.Models.Recipe", b =>
@@ -212,21 +199,6 @@ namespace RecipesApp.API.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RecipesApp.API.Models.Like", b =>
-                {
-                    b.HasOne("RecipesApp.API.Models.User", "Likee")
-                        .WithMany("Likers")
-                        .HasForeignKey("LikeeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("RecipesApp.API.Models.User", "Liker")
-                        .WithMany("Likees")
-                        .HasForeignKey("LikerId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

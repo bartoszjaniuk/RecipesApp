@@ -29,11 +29,24 @@ namespace RecipesApp.API.Controllers
         }
 
         [HttpGet] // Pobieranie wartości
-        public async Task<IActionResult> GetUsers ()
+        public async Task<IActionResult> GetUsers ([FromQuery]UserParams userParams)
         {
-            var users = await _repository.GetUsers();
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var userFromRepo = await _repository.GetUser(currentUserId);
+
+            userParams.UserId = currentUserId;
+
+            if (string.IsNullOrEmpty(userParams.Gender))
+            {
+                userParams.Gender = userFromRepo.Gender == "male" ? "female" : "male";
+            }
+
+            var users = await _repository.GetUsers(userParams);
 
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
+
+            Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
 
             return Ok(usersToReturn);
         }
@@ -92,6 +105,64 @@ namespace RecipesApp.API.Controllers
             var recipeToReturn = _mapper.Map<RecipeForDetailDto>(createdRecipe);
             
             return CreatedAtRoute("GetUser", new {controller = "Users", userId = userId, id = createdRecipe.Id}, recipeToReturn);          
+        }
+
+
+        [HttpPost("{userId}/addToFav/{recipeId}")]
+        public async Task<IActionResult> AddRecipeToFav(int userId, int recipeId)
+        {
+            if(userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var like = await _repository.AddToFav(userId, recipeId);
+
+            if (like != null)
+                return BadRequest("You allready like this recipe");
+            
+            if (await _repository.GetRecipe(recipeId) == null)
+                return NotFound();
+
+            like = new FavouriteRecipe
+            {
+                UserId = userId,
+                RecipeId = recipeId
+            };
+
+            _repository.Add<FavouriteRecipe>(like);
+
+            if (await _repository.SaveAll())
+                return Ok();
+
+            return BadRequest("Failed  to like recipe");
+        }
+
+
+        [HttpPost("{id}/like/{recipientId}")]
+        public async Task<IActionResult> LikeUser(int id, int recipientId)
+        {
+            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var like = await _repository.GetLike(id, recipientId);
+
+            if (like != null)
+                return BadRequest("You allready like this user <3");
+            
+            if (await _repository.GetUser(recipientId) == null)
+                return NotFound();
+
+            like = new Like
+            {
+                LikerId = id,
+                LikeeId = recipientId
+            };
+
+            _repository.Add<Like>(like);
+
+            if (await _repository.SaveAll())
+                return Ok();
+
+            return BadRequest("Failed  to like user");
         }
 
         

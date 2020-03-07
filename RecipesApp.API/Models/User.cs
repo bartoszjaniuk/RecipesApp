@@ -19,6 +19,10 @@ namespace RecipesApp.API.Models
         public string Country { get; set; }
         public ICollection<UserPhoto> UserPhotos {get; set;}
         public ICollection<Recipe> Recipes {get; set;}
+        public ICollection<Like> Likers {get; set;}
+        public ICollection<Like> Likees {get; set;}
+
+        
 
     }
 }
