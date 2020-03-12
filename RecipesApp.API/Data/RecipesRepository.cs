@@ -100,13 +100,24 @@ namespace RecipesApp.API.Data
             return recipe;
         }
 
-        public async Task<IEnumerable<Recipe>> GetRecipes()
+        public async Task<PagedList<Recipe>> GetRecipes(RecipeParams recipeParams)
         {
-            var recipes = await _context.Recipes
+            var recipes =  _context.Recipes
             .Include(p => p.RecipePhotos)
-            .Include(u => u.User)
-            .ToListAsync();
-            return recipes;
+            .Include(u => u.User).AsQueryable();
+
+            if(recipeParams.MinTime != 2 || recipeParams.MaxTime != 360)
+            {
+                recipes = recipes.Where(r => r.PreparationTime >= recipeParams.MinTime 
+                && r.PreparationTime <= recipeParams.MaxTime);
+            }
+
+
+        
+
+            
+            return await PagedList<Recipe>.CreateAsync(recipes, recipeParams.PageNumber, recipeParams.PageSize);
+            
         }
 
         

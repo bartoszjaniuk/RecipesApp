@@ -2362,11 +2362,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj",
+      "projectUniqueName": "C:\\Users\\janiu\\source\\repos\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj",
       "projectName": "RecipesApp.API",
-      "projectPath": "c:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj",
+      "projectPath": "C:\\Users\\janiu\\source\\repos\\RecipesApp\\RecipesApp.API\\RecipesApp.API.csproj",
       "packagesPath": "C:\\Users\\janiu\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\janiu\\RecipesApp\\RecipesApp.API\\obj\\",
+      "outputPath": "C:\\Users\\janiu\\source\\repos\\RecipesApp\\RecipesApp.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Microsoft\\Xamarin\\NuGet\\"

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Recipe } from 'src/app/_models/recipe';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { PaginatedResult } from 'src/app/_models/pagination';
+import { map } from 'rxjs/operators';
 
 
 
@@ -30,8 +32,31 @@ changeRecipePhoto(photoUrl: string) {
 }
 
 
-getRecipes(): Observable<Recipe[]> {
-  return this.http.get<Recipe[]>(this.baseUrl + 'recipes', httpOptions);
+getRecipes(page?, itemsPerPage?, recipeParams?): Observable<PaginatedResult<Recipe[]>> {
+  const paginatedResult: PaginatedResult<Recipe[]> = new PaginatedResult<Recipe[]>();
+
+  let params = new HttpParams();
+
+  if (page != null && itemsPerPage != null) {
+    params = params.append('pageNumber', page);
+    params = params.append('pageSize', itemsPerPage);
+  }
+  if (recipeParams != null) {
+    params = params.append('minTime', recipeParams.minTime);
+    params = params.append('maxTime', recipeParams.maxTime);
+    // params = params.append('orderBy', recipeParams.orderBy);
+  }
+
+  return this.http.get<Recipe[]>(this.baseUrl + 'recipes',  {observe: 'response', params})
+  .pipe(
+    map(repsonse => {
+      paginatedResult.result = repsonse.body;
+      if (repsonse.headers.get('Pagination') != null) {
+        paginatedResult.pagination = JSON.parse(repsonse.headers.get('Pagination'));
+      }
+      return paginatedResult;
+    })
+  );
 }
 
 getRecipe(id: number): Observable<Recipe> {

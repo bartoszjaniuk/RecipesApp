@@ -28,7 +28,7 @@ namespace RecipesApp.API.Data
          Task<Like> GetLike(int userId, int recipientId);
 
          // RECIPES //
-         Task<IEnumerable<Recipe>> GetRecipes();
+         Task<PagedList<Recipe>> GetRecipes(RecipeParams recipeParams);
          Task<Recipe> GetRecipe(int id);
          Task<Recipe> AddNewRecipe(Recipe recipe);
          

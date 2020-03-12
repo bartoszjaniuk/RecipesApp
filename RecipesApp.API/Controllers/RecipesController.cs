@@ -43,11 +43,16 @@ namespace RecipesApp.API.Controllers
             _cloudinary = new Cloudinary(acc);
         }
         [HttpGet] // Pobieranie wartości
-        public async Task<IActionResult> GetRecipes()
+        public async Task<IActionResult> GetRecipes([FromQuery]RecipeParams recipeParams)
         {
-            var recipes = await _repository.GetRecipes();
+            var recipes = await _repository.GetRecipes(recipeParams);
 
             var recipesToReturn = _mapper.Map<IEnumerable<RecipeForListDto>>(recipes);
+
+            Response.AddPagination(recipes.CurrentPage, 
+            recipes.PageSize, 
+            recipes.TotalCount, 
+            recipes.TotalPages);
 
             return Ok(recipesToReturn);
         }
