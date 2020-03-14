@@ -35,6 +35,7 @@ namespace RecipesApp.API.Data
          Task<bool> RecipeExists(string name);
 
          Task<FavouriteRecipe> AddToFav(int userId, int recipeId);
+         // lepiej GetFav
 
          Task<RecipePhoto> GetRecipePhoto(int id);
          Task<RecipePhoto> GetMainPhotoForRecipe(int recipeId);

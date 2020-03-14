@@ -8,6 +8,7 @@ namespace RecipesApp.API.Helpers
 
         public int MinTime { get; set; } = 2;
         public int MaxTime { get; set; } = 360;
+
     }
 
 }

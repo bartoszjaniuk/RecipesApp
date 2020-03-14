@@ -21,6 +21,7 @@ namespace RecipesApp.API.Models
         public ICollection<Recipe> Recipes {get; set;}
         public ICollection<Like> Likers {get; set;}
         public ICollection<Like> Likees {get; set;}
+        public ICollection<FavouriteRecipe> FavRecipes {get; set;}
 
         
 

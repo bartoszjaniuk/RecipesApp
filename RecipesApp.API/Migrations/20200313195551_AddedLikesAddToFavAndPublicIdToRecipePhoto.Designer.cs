@@ -9,8 +9,8 @@ using RecipesApp.API.Controllers.Models.Data;
 namespace RecipesApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200302145931_AddedFavouriteRecipeToUser")]
-    partial class AddedFavouriteRecipeToUser
+    [Migration("20200313195551_AddedLikesAddToFavAndPublicIdToRecipePhoto")]
+    partial class AddedLikesAddToFavAndPublicIdToRecipePhoto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,21 @@ namespace RecipesApp.API.Migrations
                     b.HasIndex("RecipeId");
 
                     b.ToTable("FavouriteRecipes");
+                });
+
+            modelBuilder.Entity("RecipesApp.API.Models.Like", b =>
+                {
+                    b.Property<int>("LikerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LikeeId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("LikerId", "LikeeId");
+
+                    b.HasIndex("LikeeId");
+
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("RecipesApp.API.Models.Recipe", b =>
@@ -196,9 +211,24 @@ namespace RecipesApp.API.Migrations
                         .IsRequired();
 
                     b.HasOne("RecipesApp.API.Models.User", "User")
-                        .WithMany()
+                        .WithMany("FavRecipes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RecipesApp.API.Models.Like", b =>
+                {
+                    b.HasOne("RecipesApp.API.Models.User", "Likee")
+                        .WithMany("Likers")
+                        .HasForeignKey("LikeeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("RecipesApp.API.Models.User", "Liker")
+                        .WithMany("Likees")
+                        .HasForeignKey("LikerId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

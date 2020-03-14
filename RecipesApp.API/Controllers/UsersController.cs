@@ -133,7 +133,7 @@ namespace RecipesApp.API.Controllers
             if (await _repository.SaveAll())
                 return Ok();
 
-            return BadRequest("Failed  to like recipe");
+            return BadRequest("Failed  to fav  recipe");
         }
 
 

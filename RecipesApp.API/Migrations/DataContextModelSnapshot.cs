@@ -209,7 +209,7 @@ namespace RecipesApp.API.Migrations
                         .IsRequired();
 
                     b.HasOne("RecipesApp.API.Models.User", "User")
-                        .WithMany()
+                        .WithMany("FavRecipes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
