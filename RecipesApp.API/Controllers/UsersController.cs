@@ -19,14 +19,14 @@ namespace RecipesApp.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IRecipesRepository _repository;
+        private readonly IRecipesRepository _recipesRepository;
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
 
-        public UsersController(IRecipesRepository repository, IMapper mapper, IUserRepository userRepository)
+        public UsersController(IRecipesRepository recipesRepository, IMapper mapper, IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _repository = repository;
+            _recipesRepository = recipesRepository;
             _mapper = mapper;
         }
 
@@ -39,7 +39,7 @@ namespace RecipesApp.API.Controllers
             
             var userFavs = await _userRepository.GetUserFavRecipes(currentUserId);
             
-            var userFromRepo = await _repository.GetUser(currentUserId);
+            var userFromRepo = await _userRepository.GetUser(currentUserId);
 
             userParams.UserId = currentUserId;
 
@@ -48,7 +48,7 @@ namespace RecipesApp.API.Controllers
                 userParams.Gender = userFromRepo.Gender == "male" ? "female" : "male";
             }
 
-            var users = await _repository.GetUsers(userParams);
+            var users = await _userRepository.GetUsers(userParams);
 
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
 
@@ -60,7 +60,7 @@ namespace RecipesApp.API.Controllers
         [HttpGet("{id}", Name = "GetUser")] // Pobieranie wartości
         public async Task<IActionResult> GetUser(int id)
         {
-            var user = await _repository.GetUser(id);
+            var user = await _userRepository.GetUser(id);
 
             var userToReturn = _mapper.Map<UserForDetailDto>(user);
 
@@ -76,11 +76,11 @@ namespace RecipesApp.API.Controllers
 
             // tylko zalogowany użytkownik może edytować swój profil
 
-            var userFromRepository = await _repository.GetUser(id);
+            var userFromRepository = await _userRepository.GetUser(id);
 
             _mapper.Map(userForUpdateDto, userFromRepository);
 
-            if (await _repository.SaveAll())
+            if (await _recipesRepository.SaveAll())
                 return NoContent();
 
             throw new Exception($"Updating user {id} failed on save");
@@ -95,18 +95,18 @@ namespace RecipesApp.API.Controllers
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            var userFromRepo = await _repository.GetUser(userId);
+            var userFromRepo = await _userRepository.GetUser(userId);
 
             recipeForCreateDto.Name = recipeForCreateDto.Name.ToLower();
 
-            if (await _repository.RecipeExists(recipeForCreateDto.Name))
+            if (await _recipesRepository.RecipeExists(recipeForCreateDto.Name))
                 return BadRequest("Recipe with that name already exists!");
 
             var recipeToCreate = _mapper.Map<Recipe>(recipeForCreateDto);
 
             recipeToCreate.UserId = userId;
 
-            var createdRecipe = await _repository.AddNewRecipe(recipeToCreate);
+            var createdRecipe = await _recipesRepository.AddNewRecipe(recipeToCreate);
 
             var recipeToReturn = _mapper.Map<RecipeForDetailDto>(createdRecipe);
 
@@ -120,12 +120,12 @@ namespace RecipesApp.API.Controllers
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            var like = await _repository.GetFav(userId, recipeId);
+            var like = await _recipesRepository.GetFav(userId, recipeId);
 
             if (like != null)
                 return BadRequest("You allready like this recipe");
 
-            if (await _repository.GetRecipe(recipeId) == null)
+            if (await _recipesRepository.GetRecipe(recipeId) == null)
                 return NotFound();
 
             like = new FavouriteRecipe
@@ -134,9 +134,9 @@ namespace RecipesApp.API.Controllers
                 RecipeId = recipeId
             };
 
-            _repository.Add<FavouriteRecipe>(like);
+            _recipesRepository.Add<FavouriteRecipe>(like);
 
-            if (await _repository.SaveAll())
+            if (await _recipesRepository.SaveAll())
                 return Ok();
 
             return BadRequest("Failed  to fav  recipe");
@@ -149,12 +149,12 @@ namespace RecipesApp.API.Controllers
             if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            var like = await _repository.GetLike(id, recipientId);
+            var like = await _userRepository.GetLike(id, recipientId);
 
             if (like != null)
                 return BadRequest("You allready like this user <3");
 
-            if (await _repository.GetUser(recipientId) == null)
+            if (await _userRepository.GetUser(recipientId) == null)
                 return NotFound();
 
             like = new Like
@@ -163,9 +163,9 @@ namespace RecipesApp.API.Controllers
                 LikeeId = recipientId
             };
 
-            _repository.Add<Like>(like);
+            _recipesRepository.Add<Like>(like);
 
-            if (await _repository.SaveAll())
+            if (await _recipesRepository.SaveAll())
                 return Ok();
 
             return BadRequest("Failed  to like user");
