@@ -41,12 +41,11 @@ namespace RecipesApp.API.Data
 
         public async Task<PagedList<User>> GetUsers(UserParams userParams)
         {
-            var users =  _context.Users
+           var users =  _context.Users
             .Include(p => p.UserPhotos)
             .Include(r => r.Recipes)
-            .Include(r => r.FavRecipes).OrderByDescending(u => u.LastActive).AsQueryable();
-            
-            users = users.Where(u => u.Id != userParams.UserId);
+            .Include(r => r.FavRecipes)
+            .Where (x => x.Id != userParams.UserId).OrderByDescending(u => u.LastActive).AsQueryable();
             
 
             if (userParams.Likers)
@@ -63,8 +62,14 @@ namespace RecipesApp.API.Data
 
             if (userParams.Favs)
             {
+                
+               
+
+                
                 var userFavRecipes = await GetUserFavRecipes(userParams.UserId, userParams.Favs);
                 users = users.Where(u => userFavRecipes.Contains(u.Id));
+                // users.Select(x=>x.FavRecipes).Where(u => userFavRecipes.Contains(u.RecipeId));
+                // users = users.Where(u => userFavRecipes.Contains(u.Id));
                 //źle wyświetla 
                 // powinno wyświetlić ulubione przepisy a nie ulubionych użytkownikow
             }
@@ -108,7 +113,7 @@ namespace RecipesApp.API.Data
 
             if (favs)
             {
-                return user.FavRecipes.Where(u => u.RecipeId == id).Select(i => i.UserId);
+                return user.FavRecipes.Where(u => u.UserId == id).Select(i => i.RecipeId);
             }
             else
             {
@@ -236,7 +241,7 @@ namespace RecipesApp.API.Data
                 .FirstOrDefaultAsync(p => p.IsMain);
         }
 
-        public async Task<FavouriteRecipe> AddToFav(int userId, int recipeId)
+        public async Task<FavouriteRecipe> GetFav(int userId, int recipeId)
         {
             return await _context.FavouriteRecipes.FirstOrDefaultAsync(u => u.RecipeId == recipeId && u.UserId == userId);
         }

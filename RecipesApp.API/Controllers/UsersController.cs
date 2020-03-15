@@ -21,18 +21,24 @@ namespace RecipesApp.API.Controllers
     {
         private readonly IRecipesRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
 
-        public UsersController(IRecipesRepository repository, IMapper mapper)
+        public UsersController(IRecipesRepository repository, IMapper mapper, IUserRepository userRepository)
         {
+            _userRepository = userRepository;
             _repository = repository;
             _mapper = mapper;
         }
 
         [HttpGet] // Pobieranie wartości
-        public async Task<IActionResult> GetUsers ([FromQuery]UserParams userParams)
+        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
+            //TUO
+            
+            var userFavs = await _userRepository.GetUserFavRecipes(currentUserId);
+            
             var userFromRepo = await _repository.GetUser(currentUserId);
 
             userParams.UserId = currentUserId;
@@ -52,7 +58,7 @@ namespace RecipesApp.API.Controllers
         }
 
         [HttpGet("{id}", Name = "GetUser")] // Pobieranie wartości
-        public async Task<IActionResult> GetUser (int id)
+        public async Task<IActionResult> GetUser(int id)
         {
             var user = await _repository.GetUser(id);
 
@@ -63,9 +69,9 @@ namespace RecipesApp.API.Controllers
 
 
         [HttpPut("{id}")] // Aktualizacja wartości
-        public async Task <IActionResult> UpdateUser (int id, UserForUpdateDto userForUpdateDto)
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
         {
-            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
             // tylko zalogowany użytkownik może edytować swój profil
@@ -74,14 +80,14 @@ namespace RecipesApp.API.Controllers
 
             _mapper.Map(userForUpdateDto, userFromRepository);
 
-            if(await _repository.SaveAll())
+            if (await _repository.SaveAll())
                 return NoContent();
 
             throw new Exception($"Updating user {id} failed on save");
-            
+
         }
 
-        
+
         [HttpPost("{userId}/addNewRecipe")]
         public async Task<IActionResult> AddNewRecipe(int userId, [FromBody]RecipeForCreateDto recipeForCreateDto)
         {
@@ -101,24 +107,24 @@ namespace RecipesApp.API.Controllers
             recipeToCreate.UserId = userId;
 
             var createdRecipe = await _repository.AddNewRecipe(recipeToCreate);
-            
+
             var recipeToReturn = _mapper.Map<RecipeForDetailDto>(createdRecipe);
-            
-            return CreatedAtRoute("GetUser", new {controller = "Users", userId = userId, id = createdRecipe.Id}, recipeToReturn);          
+
+            return CreatedAtRoute("GetUser", new { controller = "Users", userId = userId, id = createdRecipe.Id }, recipeToReturn);
         }
 
 
         [HttpPost("{userId}/addToFav/{recipeId}")]
         public async Task<IActionResult> AddRecipeToFav(int userId, int recipeId)
         {
-            if(userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            var like = await _repository.AddToFav(userId, recipeId);
+            var like = await _repository.GetFav(userId, recipeId);
 
             if (like != null)
                 return BadRequest("You allready like this recipe");
-            
+
             if (await _repository.GetRecipe(recipeId) == null)
                 return NotFound();
 
@@ -140,14 +146,14 @@ namespace RecipesApp.API.Controllers
         [HttpPost("{id}/like/{recipientId}")]
         public async Task<IActionResult> LikeUser(int id, int recipientId)
         {
-            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
             var like = await _repository.GetLike(id, recipientId);
 
             if (like != null)
                 return BadRequest("You allready like this user <3");
-            
+
             if (await _repository.GetUser(recipientId) == null)
                 return NotFound();
 
@@ -165,10 +171,10 @@ namespace RecipesApp.API.Controllers
             return BadRequest("Failed  to like user");
         }
 
-        
+
     }
 
 
-    
-    
+
+
 }
