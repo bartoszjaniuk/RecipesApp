@@ -33,7 +33,6 @@ namespace RecipesApp.API.Data
            return await _context.SaveChangesAsync() > 0;
         }
         
-         //.................... RECIPES........................................... //
 
         public async Task<Recipe> GetRecipe(int id)
         {
@@ -55,17 +54,11 @@ namespace RecipesApp.API.Data
                 recipes = recipes.Where(r => r.PreparationTime >= recipeParams.MinTime 
                 && r.PreparationTime <= recipeParams.MaxTime);
             }
-
-
-        
-
             
-            return await PagedList<Recipe>.CreateAsync(recipes, recipeParams.PageNumber, recipeParams.PageSize);
-            
+            return await PagedList<Recipe>.CreateAsync(recipes, recipeParams.PageNumber, recipeParams.PageSize);     
         }
 
-        
-
+    
           public async Task<Recipe> AddNewRecipe(Recipe recipe)
         {   
             await _context.Recipes.AddAsync(recipe);

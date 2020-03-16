@@ -38,6 +38,7 @@ namespace RecipesApp.API.Data
         {
              var user = await _context.Users
              .Include(p => p.UserPhotos)
+             .Include(f=>f.FavRecipes)
              .Include(r => r.Recipes)
                 .ThenInclude(r => r.RecipePhotos)
              .FirstOrDefaultAsync(r => r.Id == id);
@@ -66,19 +67,15 @@ namespace RecipesApp.API.Data
                 users = users.Where(u =>userLikees.Contains(u.Id));
             }
 
-            if (userParams.Favs)
-            {
-                
-               
-
-                
-                var userFavRecipes = await GetUserFavRecipes(userParams.UserId, userParams.Favs);
-                users = users.Where(u => userFavRecipes.Contains(u.Id));
-                // users.Select(x=>x.FavRecipes).Where(u => userFavRecipes.Contains(u.RecipeId));
-                // users = users.Where(u => userFavRecipes.Contains(u.Id));
-                //źle wyświetla 
-                // powinno wyświetlić ulubione przepisy a nie ulubionych użytkownikow
-            }
+            // if (userParams.Favs)
+            // {   
+            //     var userFavRecipes = await GetUserFavRecipes(userParams.UserId, userParams.Favs);
+            //     users = users.Where(u => userFavRecipes.Contains(u.Id));
+            //     // users.Select(x=>x.FavRecipes).Where(u => userFavRecipes.Contains(u.RecipeId));
+            //     // users = users.Where(u => userFavRecipes.Contains(u.Id));
+            //     //źle wyświetla 
+            //     // powinno wyświetlić ulubione przepisy a nie ulubionych użytkownikow
+            // }
             
             
             if (userParams.MinAge != 18 || userParams.MaxAge != 99)
@@ -104,29 +101,6 @@ namespace RecipesApp.API.Data
 
             
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
-        }
-
-
-        
-     
-
-        private async Task <IEnumerable<int>> GetUserFavRecipes (int id, bool favs)
-        {
-            var user = await _context.Users
-            .Include(x => x.Recipes)
-            .Include(x => x.FavRecipes)
-            .FirstOrDefaultAsync(u => u.Id == id);
-
-            if (favs)
-            {
-                return user.FavRecipes.Where(u => u.UserId == id).Select(i => i.RecipeId);
-            }
-            else
-            {
-                throw new Exception();
-            }
-            
-            
         }
 
         private async Task <IEnumerable<int>> GetUserLikes (int id, bool likers)

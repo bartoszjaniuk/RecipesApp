@@ -68,6 +68,17 @@ namespace RecipesApp.API.Controllers
         }
 
 
+
+        [HttpGet("{id}/favouriteRecipes")] // Pobieranie wartości
+        public async Task<IActionResult> GetUserFavRecipes(int id)
+        {
+
+            var userFavRecipes = await _userRepository.GetUserFavRecipes(id);
+            
+            return Ok(userFavRecipes);
+        }
+
+
         [HttpPut("{id}")] // Aktualizacja wartości
         public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
         {

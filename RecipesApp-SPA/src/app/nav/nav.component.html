@@ -8,7 +8,10 @@
         <a class="nav-link" [routerLink]="['/members']">Matches</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/lists']">Fav Lists</a>
+        <a class="nav-link" [routerLink]="['/likes']">Like Users</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/my-fav-recipes']">Favourite Recipes</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link " [routerLink]="['/messages']">Messages</a>
@@ -34,6 +37,8 @@
     
       <div class="dropdown-menu mt-4" *dropdownMenu>
         <a class="dropdown-item" [routerLink]="['/member/edit']"> <i class="fa fa-user"></i>Edit Profile</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" [routerLink]="['/recipe-add']"> <i class="fa fa-book"></i>Add Recipe</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
       </div>

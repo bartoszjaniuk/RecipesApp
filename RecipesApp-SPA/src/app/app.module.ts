@@ -17,7 +17,6 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
-import { LikeListsComponent } from './like-lists/like-lists.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
@@ -39,6 +38,10 @@ import { RecipeEditorComponent } from './members/member-list/recipe-editor/recip
 import { RecipeEditComponent } from './recipes/recipes-list/recipe-edit/recipe-edit.component';
 import { RecipeEditResolver } from './_resolvers/recipe-edit-resolver';
 import {TimeAgoPipe} from 'time-ago-pipe';
+import { ListsResolver } from './_resolvers/lists.resovler';
+import { LikeListsComponent } from './lists/like-lists/like-lists.component';
+import { FavRecipeListsComponent } from './lists/like-lists/favRecipe-lists/favRecipe-lists.component';
+import { FavRecipesResolver } from './_resolvers/fav-recipes-resolver';
 
 
 
@@ -60,8 +63,9 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       HomeComponent,
       RegisterComponent,
       RecipesListComponent,
-      LikeListsComponent,
       MemberListComponent,
+      LikeListsComponent,
+      FavRecipeListsComponent,
       MessagesComponent,
       MemberCardComponent,
       RecipesCardComponent,
@@ -105,7 +109,9 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberListResolver,
       RecipeListResolver,
       MemberEditResolver,
+      FavRecipesResolver,
       RecipeEditResolver,
+      ListsResolver,
       PreventUnsavedChanges,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],

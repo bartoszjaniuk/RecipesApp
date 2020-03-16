@@ -1,7 +1,7 @@
 import {Routes} from '@angular/router';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MessagesComponent } from './messages/messages.component';
-import { LikeListsComponent } from './like-lists/like-lists.component';
+import { LikeListsComponent } from './lists/like-lists/like-lists.component';
 import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './_guards/auth.guard';
@@ -17,6 +17,8 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { AddRecipeComponent } from './recipes/recipes-list/add-recipe/add-recipe.component';
 import { RecipeEditComponent } from './recipes/recipes-list/recipe-edit/recipe-edit.component';
 import { RecipeEditResolver } from './_resolvers/recipe-edit-resolver';
+import { ListsResolver } from './_resolvers/lists.resovler';
+import { FavRecipeListsComponent } from './lists/like-lists/favRecipe-lists/favRecipe-lists.component';
 
 
 export const appRoutes: Routes = [
@@ -31,7 +33,8 @@ export const appRoutes: Routes = [
             {path: 'messages', component: MessagesComponent},
             {path: 'member/edit', component: MemberEditComponent,
             resolve: {user: MemberEditResolver}, canDeactivate: [PreventUnsavedChanges]},
-            {path: 'lists', component: LikeListsComponent},
+            {path: 'likes', component: LikeListsComponent, resolve: {users: ListsResolver}},
+            {path: 'my-fav-recipes', component: FavRecipeListsComponent, resolve: {recipes: ListsResolver}},
             {path: 'recipes', component: RecipesListComponent, resolve: {recipes: RecipeListResolver}},
             {path: 'recipes/:id', component: RecipeDetailComponent, resolve: {recipe: RecipeDetailResolver}},
             {path: 'recipe-add', component: AddRecipeComponent},

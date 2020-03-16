@@ -33,6 +33,15 @@ getUsers(page?, itemsPerPage?, userParams?, likesParam?): Observable<PaginatedRe
     params = params.append('orderBy', userParams.orderBy);
   }
 
+  if (likesParam === 'Likers') {
+    params = params.append('likers', 'true');
+  }
+
+  if (likesParam === 'Likees') {
+    params = params.append('likees', 'true');
+  }
+
+
   return this.http.get<User[]>(this.baseUrl + 'users', {observe: 'response', params})
   .pipe(
     map(repsonse => {
@@ -45,7 +54,7 @@ getUsers(page?, itemsPerPage?, userParams?, likesParam?): Observable<PaginatedRe
   );
 }
 
-  getUser(id): Observable<User> {
+  getUser(id: number): Observable<User> {
     return this.http.get<User>(this.baseUrl + 'users/' + id);
   }
 
@@ -59,6 +68,18 @@ getUsers(page?, itemsPerPage?, userParams?, likesParam?): Observable<PaginatedRe
 
   deletePhoto(userId: number, id: number) {
     return this.http.delete(this.baseUrl + 'users/' + userId + '/photos/' + id);
+  }
+
+  sendLike(id: number, recipientId: number) {
+    return this.http.post(this.baseUrl + 'users/' + id + '/like/' + recipientId, {});
+  }
+
+  addToFav(id: number, recipeId: number) {
+    return this.http.post(this.baseUrl + 'users/' + id + '/addToFav/' + recipeId, {});
+  }
+  // http://localhost:5000/api/users/7/favouriteRecipes
+  getFavRecipes(id: number) {
+    return this.http.get(this.baseUrl + 'users/' + id + '/favouriteRecipes');
   }
 
 }

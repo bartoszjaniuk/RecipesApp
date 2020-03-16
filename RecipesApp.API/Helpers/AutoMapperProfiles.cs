@@ -24,6 +24,8 @@ namespace RecipesApp.API.Helpers
             .ForMember(dest => dest.Age, opt => opt
                 .MapFrom(src => src.DateOfBirth
                     .CalculateAge()));
+            
+            
 
            CreateMap<UserPhoto, UserPhotoForDetailDto>();
 
@@ -64,6 +66,8 @@ namespace RecipesApp.API.Helpers
            CreateMap<RecipeForCreateDto, Recipe>();
            //UPDATE
            CreateMap<RecipeForUpdateDto, Recipe>(); 
+
+
 
 
               

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RecipesApp.API.Models;
 
 namespace RecipesApp.API.Dtos
 {
@@ -19,5 +20,6 @@ namespace RecipesApp.API.Dtos
         //Aby wyświetlić main photo
         public ICollection<UserPhotoForDetailDto> UserPhotos {get; set;}
         public ICollection<RecipeForListDto> Recipes {get; set;}
+        public ICollection<FavouriteRecipe> FavouriteRecipes {get; set;}
     }
 }
