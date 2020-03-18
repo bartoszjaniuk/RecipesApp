@@ -1,8 +1,10 @@
 
   favRecipe-lists works!
   <div class="row recipes-body">
-    <div *ngFor="let recipe of recipes" class="col-md-4 col-sm-6 mb-4">
-      <app-recipes-card [recipe]="recipe"></app-recipes-card>
+    <div *ngFor="let recipe of recipe" class="col-md-4 col-sm-6 mb-4">
+      <app-fav-recipe-card [recipe]="recipe"></app-fav-recipe-card>
     </div>
   </div>
+
+
 

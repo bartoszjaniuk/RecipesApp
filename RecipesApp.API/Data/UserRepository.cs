@@ -38,9 +38,9 @@ namespace RecipesApp.API.Data
         {
              var user = await _context.Users
              .Include(p => p.UserPhotos)
-             .Include(f=>f.FavRecipes)
              .Include(r => r.Recipes)
                 .ThenInclude(r => r.RecipePhotos)
+            .Include(f=>f .FavRecipes)
              .FirstOrDefaultAsync(r => r.Id == id);
             return user;
         }
@@ -158,6 +158,7 @@ namespace RecipesApp.API.Data
             //Dla usera o id 1 pobrało mi jakieś dwa przepisy - nie wiem czy to się zgadza czy nie, ale to sprawdzisz samemu najlepiej
             var userFavRecipes = _context.FavouriteRecipes
             .Include(x => x.Recipe)
+            .ThenInclude(x=>x.RecipePhotos)
             .Where(x => x.UserId == userId)
             .Select(x => x.Recipe)?.ToListAsync();
 

@@ -6,7 +6,7 @@ namespace RecipesApp.API.Dtos
     public class RecipeForCreateDto
     {
         [Required]
-        [StringLength(8, MinimumLength = 3, ErrorMessage ="You must specify password between 3 and 12 characters")]
+        [StringLength(15, MinimumLength = 3, ErrorMessage ="You must specify name between 3 and 15 characters")]
         public string Name { get; set; }
         
         [Required]

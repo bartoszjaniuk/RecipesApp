@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using RecipesApp.API.Dtos.Recipe;
+using RecipesApp.API.Models;
 
 namespace RecipesApp.API.Dtos
 {
@@ -16,6 +19,7 @@ namespace RecipesApp.API.Dtos
         public string City { get; set; }
         public string Country { get; set; }
         public string PhotoUrl { get; set; }
+        public List<FavouriteRecipeToReturn> FavouriteRecipes {get; set;}
         //Aby wyświetlić main photo
     }
 }

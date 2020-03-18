@@ -1,6 +1,7 @@
 using System.Linq;
 using AutoMapper;
 using RecipesApp.API.Dtos;
+using RecipesApp.API.Dtos.Recipe;
 using RecipesApp.API.Models;
 
 namespace RecipesApp.API.Helpers
@@ -66,6 +67,13 @@ namespace RecipesApp.API.Helpers
            CreateMap<RecipeForCreateDto, Recipe>();
            //UPDATE
            CreateMap<RecipeForUpdateDto, Recipe>(); 
+
+        //    CreateMap<FavouriteRecipe, FavouriteRecipeToReturn>();
+          
+
+           
+
+
 
 
 

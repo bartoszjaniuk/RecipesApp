@@ -19,6 +19,7 @@ import { RecipeEditComponent } from './recipes/recipes-list/recipe-edit/recipe-e
 import { RecipeEditResolver } from './_resolvers/recipe-edit-resolver';
 import { ListsResolver } from './_resolvers/lists.resovler';
 import { FavRecipeListsComponent } from './lists/like-lists/favRecipe-lists/favRecipe-lists.component';
+import { FavRecipesResolver } from './_resolvers/fav-recipes-resolver';
 
 
 export const appRoutes: Routes = [
@@ -34,7 +35,7 @@ export const appRoutes: Routes = [
             {path: 'member/edit', component: MemberEditComponent,
             resolve: {user: MemberEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             {path: 'likes', component: LikeListsComponent, resolve: {users: ListsResolver}},
-            {path: 'my-fav-recipes', component: FavRecipeListsComponent, resolve: {recipes: ListsResolver}},
+            {path: 'my-fav-recipes', component: FavRecipeListsComponent, resolve: {recipes: FavRecipesResolver}},
             {path: 'recipes', component: RecipesListComponent, resolve: {recipes: RecipeListResolver}},
             {path: 'recipes/:id', component: RecipeDetailComponent, resolve: {recipe: RecipeDetailResolver}},
             {path: 'recipe-add', component: AddRecipeComponent},

@@ -42,6 +42,7 @@ import { ListsResolver } from './_resolvers/lists.resovler';
 import { LikeListsComponent } from './lists/like-lists/like-lists.component';
 import { FavRecipeListsComponent } from './lists/like-lists/favRecipe-lists/favRecipe-lists.component';
 import { FavRecipesResolver } from './_resolvers/fav-recipes-resolver';
+import { FavRecipeCardComponent } from './lists/like-lists/favRecipe-lists/fav-recipe-card/fav-recipe-card.component';
 
 
 
@@ -70,6 +71,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberCardComponent,
       RecipesCardComponent,
       MemberDetailComponent,
+      FavRecipeCardComponent,
       RecipeDetailComponent,
       MemberEditComponent,
       PhotoEditorComponent,

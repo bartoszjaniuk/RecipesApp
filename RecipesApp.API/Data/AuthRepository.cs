@@ -18,7 +18,9 @@ namespace RecipesApp.API.Data
 
         public async Task<User> Login(string username, string password)
         {
-            var user = await _context.Users.Include(p => p.UserPhotos).FirstOrDefaultAsync(u => u.Username == username);
+            var user = await _context.Users
+            .Include(p=>p.FavRecipes)
+            .Include(p => p.UserPhotos).FirstOrDefaultAsync(u => u.Username == username);
             // Zaleta korzystania z FirstOrDefaultAsync = że zwróci albo użytkownika lub null.
             
             if(user == null)
