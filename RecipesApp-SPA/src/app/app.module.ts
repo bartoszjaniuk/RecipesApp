@@ -43,6 +43,7 @@ import { LikeListsComponent } from './lists/like-lists/like-lists.component';
 import { FavRecipeListsComponent } from './lists/like-lists/favRecipe-lists/favRecipe-lists.component';
 import { FavRecipesResolver } from './_resolvers/fav-recipes-resolver';
 import { FavRecipeCardComponent } from './lists/like-lists/favRecipe-lists/fav-recipe-card/fav-recipe-card.component';
+import { MessagesResolver } from './_resolvers/messages-resolver';
 
 
 
@@ -111,6 +112,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberListResolver,
       RecipeListResolver,
       MemberEditResolver,
+      MessagesResolver,
       FavRecipesResolver,
       RecipeEditResolver,
       ListsResolver,
