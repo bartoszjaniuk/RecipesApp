@@ -1,0 +1,20 @@
+<div class="card text-white">
+  <div class="card-img-wrapper">
+    <img class="card-img"  src="{{recipe.photoUrl || '../../../../../../assets/image.png'}}" alt="{{recipe.name}}">
+      <div class="card-img-overlay d-flex flex-column p-0">
+
+        <div class="d-flex flex-column text-center  mb-3 mt-4">
+          <h4 class="card-text-name bg-opacity text-white">{{recipe.name}}</h4>
+        </div>
+        <div class=" d-flex mt-auto">
+            <h4 class="card-text text-white  p-2 mb-0">{{recipe.dateAdded}}</h4>
+            <h4 class="card-text  text-white p-2 ml-auto">{{recipe.preparationTime}} <i class="fa fa-clock-o"></i></h4>
+            <ul class="list-inline recipe-icons animate text-center">
+              <li class="list-inline-item"><h2 class="text-white mr-5" (click)="addToFav(recipe.id)"><i class="fa fa-heart"></i></h2></li>
+              <li class="list-inline-item"><h2 class="text-white mr-5"><i class="fa fa-comment"></i></h2></li>
+              <li class="list-inline-item"><h2 class="text-white"><i class="fa fa-eye" [routerLink]="['/recipes/', recipe.id]"></i></h2></li>
+            </ul>
+    
+        </div>
+      </div>
+</div>

@@ -1,0 +1,19 @@
+.dropdown-toggle, .dropdown-item {
+    cursor: pointer;
+}
+
+.navbar {
+    font-size: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.mt-4, .my-4 {
+    margin-top: 2.4rem !important;
+}
+
+img {
+    max-height: 50px;
+    border: 1px solid white;
+    display: inline;
+} 

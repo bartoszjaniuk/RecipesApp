@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  
+  <form class="form-inline" #form="ngForm" (ngSubmit) ="loadRecipes()" novalidate>
+    <div class="form-group">
+      <label for="minTime">Age From</label>
+      <input type="number" class="form-control ml-1" style="width: 120px" id="minTime"
+      [(ngModel)]="recipeParams.minTime" name="minTime">
+    </div>
+  
+    <div class="form-group px-2">
+      <label for="maxTime">Age To</label>
+      <input type="number" class="form-control ml-1" style="width: 120px" id="maxTime"
+      [(ngModel)]="recipeParams.maxTime" name="maxTime">
+    </div>
+  
+
+    <button type="submit" class="btn btn-primary" style="margin-left:10px">Apply Filters</button>
+    <button type="button" class="btn btn-info" style="margin-left:10px" (click)="resetFilters()">Reset Filter</button>
+
+    <!-- <div class="col">
+      <div class="btn-group float-right">
+        <button type="button" name="orderBy" class="btn btn-primary" [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="lastActive">Last Active</button>
+        <button type="button" name="orderBy" class="btn btn-primary" [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="created">Newest Members</button>
+      </div>
+    </div> -->
+  </form>
+
+
+
+
+  <div class="row recipes-body">
+    <div *ngFor="let recipe of recipes" class="col-md-4 col-sm-6 mb-4">
+      <app-recipes-card [recipe]="recipe"></app-recipes-card>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" 
+                [totalItems]="pagination.totalItems" 
+                [itemsPerPage]="pagination.itemsPerPage" 
+                [(ngModel)]="pagination.currentPage"
+                name = "pagination"
+                (pageChanged)="pageChanged($event)"
+                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"lastText="&raquo;">
+  
+    </pagination>
+</div>
+</div>

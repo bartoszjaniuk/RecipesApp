@@ -1,0 +1,61 @@
+<div class="container" >
+  <div class="row justify-content-center">
+    <div class="col-lg body-card-shadow">
+      <form [formGroup]="addRecipeForm" class="p-5" 
+      (ngSubmit)="createRecipe()">
+        <h2 class="text-center text-primary"> ADD NEW RECIPE</h2>
+        <hr>
+
+        <div class="form-group">
+          <input type="text" [ngClass]="{
+              'is-invalid':
+                addRecipeForm.get('name').errors &&
+                addRecipeForm.get('name').touched
+            }" class="form-control" formControlName="name" placeholder="Name" />
+          <div class="invalid-feedback">Please name your Recipe</div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" [ngClass]="{
+              'is-invalid':
+                addRecipeForm.get('ingredients').errors &&
+                addRecipeForm.get('ingredients').touched
+            }" class="form-control" formControlName="ingredients" placeholder="Ingredients.." />
+          <div class="invalid-feedback"
+          *ngIf="addRecipeForm.get('ingredients').touched && addRecipeForm.get('ingredients').hasError('required')"> Ingredients are required
+        </div>
+        </div>
+
+        <div class="form-group">
+          <input type="number" [ngClass]="{
+              'is-invalid':
+                addRecipeForm.get('preparationTime').errors &&
+                addRecipeForm.get('preparationTime').touched
+            }" class="form-control" formControlName="preparationTime" placeholder="Preparation Time" />
+          <div class="invalid-feedback"
+          *ngIf="addRecipeForm.get('preparationTime').touched && addRecipeForm.get('preparationTime').hasError('required')"> Preparation Time is required
+        </div>
+        </div>
+
+        <div class="form-group">
+          <textarea cols=100% rows="6" [ngClass]="{
+              'is-invalid':
+                addRecipeForm.get('description').errors &&
+                addRecipeForm.get('description').touched
+            }" class="form-control" formControlName="description" placeholder="Description"></textarea>
+          <div class="invalid-feedback"
+          *ngIf="addRecipeForm.get('description').touched && addRecipeForm.get('description').hasError('required')"> Descripe your recipe, it's important!
+        </div>
+        </div>
+
+        <div class="form-group text-center">
+          <button class="btn btn-success" [disabled]="!addRecipeForm.valid" type="submit">Add</button>
+          <button class="btn btn-default" type="button" (click)="cancel()">
+            Cancel
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

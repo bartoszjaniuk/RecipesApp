@@ -1,0 +1,67 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <h1>Your Profile</h1>
+    </div>
+    <div class="col-sm-8">
+      <div *ngIf="editForm.dirty" class="alert alert-info"> <p><strong>Information:</strong> You have made changes. Any unsaved changes will be lost!</p> </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+      <img class=" img-circle card-img-top" src="{{photoUrl || '../../../assets/user.png'}}" alt="{{user.knownAs}}">
+      <div class="card-body">
+        <div>
+          <strong>Location:</strong>
+          <p>{{user.city}}, {{user.country}}</p>
+        </div>
+        <div>
+          <strong>Age:</strong>
+          <p>{{user.age}}</p>
+        </div>
+        <div>
+          <strong>Last Active:</strong>
+          <p>{{user.lastActive}}</p>
+        </div>
+        <div>
+          <strong>Member since:</strong>
+          <p>{{user.created}}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+          <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Save changes</button>
+      </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset class="member-tabset">
+          <tab heading ="Edit Profile">
+            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()" >
+              <h5 class=" text-center mt-4">Description</h5>
+              <textarea name="introduction"  cols=100% rows="6" class="form-contorl mt-2" 
+                [(ngModel)]="user.introduction"></textarea>
+                <h5 class=" text-center mt-2">Location Details:</h5>
+                <div class="form-group mt-3">
+                  <label for="city">City</label>
+                  <input class="form-control" type="text" name="city" [(ngModel)]="user.city">
+                </div>
+                <div class="form-group">
+                  <label for="country">Country</label>
+                  <input class="form-control" type="text" name="country" [(ngModel)]="user.country">
+                </div>
+            </form>  
+        </tab>
+        <tab heading ="Edit Photos">
+          <app-photo-editor [photos] = "user.userPhotos" (getMemberPhotoChange) ="updateMainPhoto($event)"></app-photo-editor>
+        </tab>
+
+        <tab heading ="Edit Recipes">
+          <app-recipe-editor [recipes] = "user.recipes"></app-recipe-editor>
+        </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div> 
