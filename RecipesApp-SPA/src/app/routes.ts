@@ -20,6 +20,7 @@ import { RecipeEditResolver } from './_resolvers/recipe-edit-resolver';
 import { ListsResolver } from './_resolvers/lists.resovler';
 import { FavRecipeListsComponent } from './lists/like-lists/favRecipe-lists/favRecipe-lists.component';
 import { FavRecipesResolver } from './_resolvers/fav-recipes-resolver';
+import { MessagesResolver } from './_resolvers/messages-resolver';
 
 
 export const appRoutes: Routes = [
@@ -31,7 +32,7 @@ export const appRoutes: Routes = [
         children: [
             {path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}},
             {path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver}},
-            {path: 'messages', component: MessagesComponent},
+            {path: 'messages', component: MessagesComponent, resolve: {messages: MessagesResolver}},
             {path: 'member/edit', component: MemberEditComponent,
             resolve: {user: MemberEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             {path: 'likes', component: LikeListsComponent, resolve: {users: ListsResolver}},

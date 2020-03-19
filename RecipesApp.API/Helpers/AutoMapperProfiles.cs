@@ -1,7 +1,7 @@
 using System.Linq;
 using AutoMapper;
 using RecipesApp.API.Dtos;
-using RecipesApp.API.Dtos.Recipe;
+using RecipesApp.API.Dtos.Message;
 using RecipesApp.API.Models;
 
 namespace RecipesApp.API.Helpers
@@ -68,7 +68,15 @@ namespace RecipesApp.API.Helpers
            //UPDATE
            CreateMap<RecipeForUpdateDto, Recipe>(); 
 
-        //    CreateMap<FavouriteRecipe, FavouriteRecipeToReturn>();
+
+           CreateMap<MessageForCreationDto, Message>().ReverseMap();
+            CreateMap<Message, MessageToReturnDto>()
+                .ForMember(m => m.SenderPhotoUrl, opt => opt
+                    .MapFrom(u => u.Sender.UserPhotos.FirstOrDefault(p => p.IsMain).Url))
+                .ForMember(m => m.RecipientPhotoUrl, opt => opt
+                    .MapFrom(u => u.Recipient.UserPhotos.FirstOrDefault(p => p.IsMain).Url));
+
+       
           
 
            

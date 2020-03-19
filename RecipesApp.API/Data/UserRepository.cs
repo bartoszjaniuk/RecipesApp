@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RecipesApp.API.Controllers.Models.Data;
 using RecipesApp.API.Helpers;
+using RecipesApp.API.Helpers.Sorting;
 using RecipesApp.API.Models;
 
 namespace RecipesApp.API.Data
@@ -67,16 +68,6 @@ namespace RecipesApp.API.Data
                 users = users.Where(u =>userLikees.Contains(u.Id));
             }
 
-            // if (userParams.Favs)
-            // {   
-            //     var userFavRecipes = await GetUserFavRecipes(userParams.UserId, userParams.Favs);
-            //     users = users.Where(u => userFavRecipes.Contains(u.Id));
-            //     // users.Select(x=>x.FavRecipes).Where(u => userFavRecipes.Contains(u.RecipeId));
-            //     // users = users.Where(u => userFavRecipes.Contains(u.Id));
-            //     //źle wyświetla 
-            //     // powinno wyświetlić ulubione przepisy a nie ulubionych użytkownikow
-            // }
-            
             
             if (userParams.MinAge != 18 || userParams.MaxAge != 99)
            {
@@ -121,23 +112,6 @@ namespace RecipesApp.API.Data
 
         }
 
-
-
-        // private async Task <IEnumerable<int>> GetUserFavRecipes (int id, bool favs)
-        // {
-        //     var user = await _context.Users
-        //     .Include(x => x.FavRecipes)
-        //     .FirstOrDefaultAsync(u=>u.Id == id);
-
-        //     if(favs)
-        //     {
-        //         return user.FavRecipes.Where(u => u.UserId == id).Select(i => i.RecipeId);
-        //     }    
-
-        // }
-
-
-
         public async Task<UserPhoto> GetMainPhotoForUser(int userId)
         {
             return await _context.UserPhotos.Where(u => u.UserId == userId)
@@ -170,6 +144,51 @@ namespace RecipesApp.API.Data
         {
             return await _context.Likes.FirstOrDefaultAsync(u => u.LikerId == userId && u.LikeeId == recipientId);
         }
-        
+
+        public async Task<Message> GetMessage(int id)
+        {
+            return await _context.Messages.FirstOrDefaultAsync(m => m.Id == id);
+        }
+
+        public async Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams)
+        {
+            var messages = _context.Messages
+            .Include(u=>u.Sender).ThenInclude(p=>p.UserPhotos)
+            .Include(u=>u.Recipient).ThenInclude(p=>p.UserPhotos)
+            .AsQueryable();
+
+            switch (messageParams.MessageContainer)
+            {
+                case "Inbox":
+                    messages = messages.Where(u => u.RecipientId == messageParams.UserId 
+                        && u.RecipientDeleted == false);
+                    break;
+                case "Outbox":
+                    messages = messages.Where(u => u.SenderId == messageParams.UserId 
+                        && u.SenderDeleted == false);
+                    break;
+                default:
+                    messages = messages.Where(u => u.RecipientId == messageParams.UserId 
+                        && u.RecipientDeleted == false && u.IsRead == false);
+                    break;
+            }
+
+            messages = messages.OrderByDescending(d => d.MessageSent);
+
+            return await PagedList<Message>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
+        }
+
+        public async Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId)
+        {
+            var messages = await _context.Messages
+            .Include(u=>u.Sender).ThenInclude(p=>p.UserPhotos)
+            .Include(u=>u.Recipient).ThenInclude(p=>p.UserPhotos)
+            .Where(m=>m.RecipientId== userId && m.SenderId == recipientId 
+                || m.RecipientId ==recipientId && m.SenderId == userId)
+            .OrderByDescending(m=>m.MessageSent)
+            .ToListAsync();
+
+            return messages;
+        }
     }
 }
