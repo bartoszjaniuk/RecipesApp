@@ -20,8 +20,8 @@
 
         <div class="row">
           <div class="col text-center border" >Posts: {{user.recipes.length}}</div>
-          <div class="col text-center border" >Followers:</div>
-          <div class="col text-center border" >Following:</div>
+          <div class="col text-center border" >Followers:{{user.likers.length}}</div>
+          <div class="col text-center border" >Following:{{user.likees.length}}</div>
           <div class="col text-center border" >Last active: {{user.lastActive | timeAgo}}</div>
         </div>
         <p class="text-center">{{user.introduction}}</p>

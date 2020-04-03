@@ -1,11 +1,13 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-light bg-light border">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/home']" >Recipes App</a>
+    <a class="navbar-brand" [routerLink]="['/home']" ><img src="https://lh3.googleusercontent.com/proxy/w3xUw_QXqf8mY_oIVBH_Ccas72PWcVVSyI8LkKNQ0bxr8dcbPq39B8KOiJPVXmGW_MHx9KvL8AffP6y_BMiaG8JAvxv8VJWn9pdJLvC8rt8BaxvE" alt=""></a>
       
     <ul class="navbar-nav mr-auto" *ngIf="loggedIn()">
-
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link " [routerLink]="['/recipes']">Recipes</a>
+      </li>
       <li class="nav-item " routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/members']">Matches</a>
+        <a class="nav-link" [routerLink]="['/members']">Users</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/likes']">Like Users</a>
@@ -13,19 +15,12 @@
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/my-fav-recipes']">Favourite Recipes</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link " [routerLink]="['/recipes']">Recipes</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/recipe-add']">Add Recipe</a>
-      </li>
-
     </ul>
 
 
     
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
-      <a class="dropdown-toggle text-light" dropdownToggle>
+      <a class="dropdown-toggle " dropdownToggle>
         <span class="mr-3">
           <img  class="rounded-circle" src="{{photoUrl || '../../assets/user.png'}}" alt="">
         </span>

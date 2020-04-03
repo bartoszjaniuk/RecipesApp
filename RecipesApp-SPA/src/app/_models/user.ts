@@ -1,5 +1,6 @@
 import { UserPhoto } from './userPhoto';
 import { Recipe } from './recipe';
+import { Like } from './like';
 
 export interface User {
     id: number;
@@ -15,4 +16,6 @@ export interface User {
     introduction?: string;
     userPhotos?: UserPhoto[];
     recipes?: Recipe[];
+    likers?: Like[];
+    likees?: Like[];
 }

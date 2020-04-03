@@ -40,8 +40,10 @@ namespace RecipesApp.API.Data
              var user = await _context.Users
              .Include(p => p.UserPhotos)
              .Include(r => r.Recipes)
-                .ThenInclude(r => r.RecipePhotos)
-            .Include(f=>f .FavRecipes)
+             .ThenInclude(r => r.RecipePhotos)
+             .Include(f=>f .FavRecipes)
+             .Include(f=>f .Likers)
+             .Include(f=>f .Likees)
              .FirstOrDefaultAsync(r => r.Id == id);
             return user;
         }

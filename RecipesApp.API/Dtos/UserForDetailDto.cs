@@ -21,5 +21,7 @@ namespace RecipesApp.API.Dtos
         public ICollection<UserPhotoForDetailDto> UserPhotos {get; set;}
         public ICollection<RecipeForListDto> Recipes {get; set;}
         public ICollection<FavouriteRecipe> FavRecipes {get; set;}
+        public ICollection<Like> Likers {get; set;}
+        public ICollection<Like> Likees {get; set;}
     }
 }
