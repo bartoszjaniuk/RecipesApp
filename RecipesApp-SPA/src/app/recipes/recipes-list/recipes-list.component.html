@@ -2,16 +2,17 @@
   
   <form class="form-inline" #form="ngForm" (ngSubmit) ="loadRecipes()" novalidate>
     <div class="form-group">
-      <label for="minTime">Age From</label>
+      <label for="minTime">Preparation time from</label>
       <input type="number" class="form-control ml-1" style="width: 120px" id="minTime"
       [(ngModel)]="recipeParams.minTime" name="minTime">
     </div>
   
     <div class="form-group px-2">
-      <label for="maxTime">Age To</label>
+      <label for="maxTime">to</label>
       <input type="number" class="form-control ml-1" style="width: 120px" id="maxTime"
       [(ngModel)]="recipeParams.maxTime" name="maxTime">
     </div>
+    minutes
   
 
     <button type="submit" class="btn btn-primary" style="margin-left:10px">Apply Filters</button>

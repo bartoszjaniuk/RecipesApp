@@ -1,18 +1,18 @@
-<div class="container mt-4" style="border: 1px solid black;">
+<div class="container mt-4 border">
   <!-- Control the column width, and how they should appear on different devices -->
   
-  <div class="row" style="background-color:blue;">
-    <div class="col">
+  <div class="row border">
+    <div class="col border">
       <h2 class="text-center">{{recipe.name}}</h2>
     </div>
   </div>
   
   
-  <div class="row">
-      <div class="col-sm-6" style="background-color:green;">
+  <div class="row border">
+      <div class="col-sm-6 border">
         <img src="{{recipe.photoUrl || '../../../../../../assets/image.png'}}" class="img-fluid" alt="Responsive image">
       </div>
-      <div class="col-sm-6" style="background-color:gray;">
+      <div class="col-sm-6 border">
         <p>Czas przygotowania: {{recipe.preparationTime}}</p>
         <p>Składniki: {{recipe.ingredients}}</p>
         <p>Opis: {{recipe.description}}</p>
@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <p>Zdjęcia:</p>
+  <h2 class="text-center">Photos</h2>
         <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
 
 </div>
