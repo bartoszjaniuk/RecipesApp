@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
   model: any = {};
   photoUrl: string;
+  isCollapsed = false;
   constructor(public authService: AuthService, private alertifyService: AlertifyService, private router: Router) { }
 
   ngOnInit() {

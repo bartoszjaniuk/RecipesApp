@@ -14,9 +14,6 @@
         <a class="nav-link" [routerLink]="['/my-fav-recipes']">Favourite Recipes</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link " [routerLink]="['/messages']">Messages</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link " [routerLink]="['/recipes']">Recipes</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
@@ -30,9 +27,9 @@
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
       <a class="dropdown-toggle text-light" dropdownToggle>
         <span class="mr-3">
-          <img src="{{photoUrl || '../../assets/user.png'}}" alt="">
+          <img  class="rounded-circle" src="{{photoUrl || '../../assets/user.png'}}" alt="">
         </span>
-        Welcome {{authService.decodedToken?.unique_name | titlecase}}
+        Welcome, {{authService.decodedToken?.unique_name | titlecase}}
       </a>
     
       <div class="dropdown-menu mt-4" *dropdownMenu>
@@ -40,9 +37,12 @@
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" [routerLink]="['/recipe-add']"> <i class="fa fa-book"></i>Add Recipe</a>
         <div class="dropdown-divider"></div>
+        <a class="dropdown-item" [routerLink]="['/messages']"> <i class="fa fa-comment"></i>Messages</a>
+        <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
       </div>
     </div>
+    
     
     
     
