@@ -21,6 +21,7 @@ namespace RecipesApp.API
                 {
                     var context = services.GetRequiredService<DataContext>();
                     context.Database.Migrate();
+                    SeedCategories.Seed(context);
                     Seed.SeedUsers(context);
                 }
                 catch(Exception ex)

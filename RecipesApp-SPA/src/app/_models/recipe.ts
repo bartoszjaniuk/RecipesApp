@@ -7,6 +7,7 @@ export interface Recipe {
     preparationTime: number;
     dateAdded: Date;
     photoUrl: string;
+    categoryId: number;
     description?: string;
     recipePhotos?: RecipePhoto[];
 }

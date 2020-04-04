@@ -224,5 +224,12 @@ namespace RecipesApp.API.Controllers
             return BadRequest("Could not set photo to main");
         }
 
+        [HttpGet("categories")]
+        public async Task<IActionResult> GetCategories()
+        {
+            var users = await _repository.GetCategories();
+            return Ok(users);
+        }
+
     }
 }

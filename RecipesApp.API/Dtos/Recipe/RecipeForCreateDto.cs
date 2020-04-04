@@ -17,9 +17,13 @@ namespace RecipesApp.API.Dtos
         
         [Required]
         public string Description { get; set; }
+
+        [Required]
+        public int CategoryId { get; set; }
         
         public DateTime DateAdded { get; set; }
         public int UserId { get; set; }
+        public int AuthorId { get; set; }
 
 
         public RecipeForCreateDto()

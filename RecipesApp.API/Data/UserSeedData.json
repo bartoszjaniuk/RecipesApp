@@ -30,7 +30,8 @@
               "isMain": true,
               "description": "Sit aliquip deserunt duis id."
             }
-          ]
+          ],
+          "CategoryId": 2
         },
         {
           "Name": "Kebab",
@@ -44,7 +45,8 @@
               "isMain": true,
               "description": "Fugiat minim consectetur amet nostrud cillum proident aliquip incididunt excepteur ad ad."
             }
-          ]
+          ],
+          "CategoryId": 2
         },
         {
           "Name": "Erin",
@@ -58,7 +60,8 @@
               "isMain": true,
               "description": "Fugiat sunt cupidatat dolor anim dolore sunt."
             }
-          ]
+          ],
+          "CategoryId": 5
         },
         {
           "Name": "Tortollieni",
@@ -72,7 +75,8 @@
               "isMain": true,
               "description": "Fugiat sunt cupidatat dolor anim dolore sunt."
             }
-          ]
+          ],
+          "CategoryId": 4
         },
         {
           "Name": "Pierogi",
@@ -86,7 +90,8 @@
               "isMain": true,
               "description": "Fugiat sunt cupidatat dolor anim dolore sunt."
             }
-          ]
+          ],
+          "CategoryId": 1
         }
 
       ]
@@ -122,7 +127,8 @@
               "isMain": true,
               "description": "Fugiat minim consectetur amet nostrud cillum proident aliquip incididunt excepteur ad ad."
             }
-          ]
+          ],
+          "CategoryId": 5
         }
       ]
     },
@@ -157,7 +163,8 @@
               "isMain": true,
               "description": "Aute aliquip pariatur consequat dolor do non enim."
             }
-          ]
+          ],
+          "CategoryId": 6
         }
       ]
     },
@@ -192,7 +199,8 @@
               "isMain": true,
               "description": "Fugiat sunt cupidatat dolor anim dolore sunt."
             }
-          ]
+          ],
+          "CategoryId": 6
         }
       ]
     },
@@ -227,7 +235,8 @@
               "isMain": true,
               "description": "Pariatur nulla culpa excepteur irure proident."
             }
-          ]
+          ],
+          "CategoryId": 4
         }
       ]
     },
@@ -262,7 +271,8 @@
                   "isMain": true,
                   "description": "Reprehenderit amet culpa mollit tempor consectetur enim est tempor quis."
                 }
-              ]
+              ],
+              "CategoryId": 4
             }
           ]
         },
@@ -297,7 +307,8 @@
                   "isMain": true,
                   "description": "Laboris dolore deserunt ea Lorem eiusmod cillum aliquip dolor sint deserunt cupidatat ut ut tempor."
                 }
-              ]
+              ],
+              "CategoryId": 4
             }
           ]
         },
@@ -332,7 +343,8 @@
                   "isMain": true,
                   "description": "Sint ex amet et reprehenderit voluptate."
                 }
-              ]
+              ],
+              "CategoryId": 3
             }
           ]
         },
@@ -367,7 +379,8 @@
                   "isMain": true,
                   "description": "Dolor cupidatat ea dolor Lorem duis id exercitation."
                 }
-              ]
+              ],
+              "CategoryId": 1
             }
           ]
         },
@@ -402,7 +415,8 @@
                   "isMain": true,
                   "description": "Ullamco officia adipisicing ea aute."
                 }
-              ]
+              ],
+              "CategoryId": 1
             }
           ]
         }

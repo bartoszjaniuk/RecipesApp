@@ -5,6 +5,7 @@ import { Recipe } from 'src/app/_models/recipe';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { PaginatedResult } from 'src/app/_models/pagination';
 import { map } from 'rxjs/operators';
+import { Category } from 'src/app/_models/category';
 
 
 
@@ -84,6 +85,9 @@ deletePhoto(userId: number, recipeId: number, id: number) {
 // http://localhost:5000/api/users/1/recipes/1/photos/16/setMain
 setMainPhoto(userId: number, recipeId: number, id: number) {
   return this.http.post(this.baseUrl + 'users/' + userId + '/recipes/' + recipeId + '/photos/' + id + '/setMain', {});
+}
+getCategories(): Observable<Category[]> {
+  return this.http.get<Category[]>(this.baseUrl + 'recipes' + '/categories');
 }
 
 }

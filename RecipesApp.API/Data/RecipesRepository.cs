@@ -92,7 +92,14 @@ namespace RecipesApp.API.Data
         {
             return await _context.FavouriteRecipes.FirstOrDefaultAsync(u => u.RecipeId == recipeId && u.UserId == userId);
         }
-      
+
+         public async Task<IEnumerable<Category>> GetCategories()
+        {
+           var categories = await _context.Categories.Include(p => p.Recipes).ToListAsync();
+
+           return categories;
+
+        }
     }
     
 }

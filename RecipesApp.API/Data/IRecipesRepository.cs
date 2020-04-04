@@ -28,6 +28,6 @@ namespace RecipesApp.API.Data
 
          Task<RecipePhoto> GetRecipePhoto(int id);
          Task<RecipePhoto> GetMainPhotoForRecipe(int recipeId);
-
+         Task<IEnumerable<Category>> GetCategories();
     }
 }

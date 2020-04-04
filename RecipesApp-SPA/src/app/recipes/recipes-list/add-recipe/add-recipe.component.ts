@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Recipe } from 'src/app/_models/recipe';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -6,6 +6,7 @@ import { Router} from '@angular/router';
 import { User } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
 import { RecipeService } from 'src/app/_services/recipe/recipe.service';
+import { Category } from 'src/app/_models/category';
 
 @Component({
   selector: 'app-add-recipe',
@@ -13,6 +14,7 @@ import { RecipeService } from 'src/app/_services/recipe/recipe.service';
   styleUrls: ['./add-recipe.component.css']
 })
 export class AddRecipeComponent implements OnInit {
+  categories: Category[];
   user: User;
   recipe: Recipe;
   addRecipeForm: FormGroup;
@@ -23,6 +25,7 @@ export class AddRecipeComponent implements OnInit {
 
   ngOnInit() {
     this.createRecipeForm();
+    this.getCategories();
   }
 
 
@@ -31,7 +34,8 @@ export class AddRecipeComponent implements OnInit {
       name: ['', Validators.required],
       ingredients: ['', Validators.required],
       preparationTime: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      categoryId: ['', Validators.required]
     });
   }
 
@@ -53,6 +57,14 @@ export class AddRecipeComponent implements OnInit {
   cancel() {
     this.router.navigate(['members']);
     this.alertifyService.warning('Cancelled');
+  }
+
+  getCategories() {
+    this.recipeService.getCategories().subscribe(response => {
+      this.categories = response;
+    }, error => {
+      this.alertifyService.error(error);
+    });
   }
 
 }

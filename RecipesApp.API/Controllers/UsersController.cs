@@ -103,11 +103,15 @@ namespace RecipesApp.API.Controllers
         {
 
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
+            return Unauthorized();
 
             var userFromRepo = await _userRepository.GetUser(userId);
 
+
+
             recipeForCreateDto.Name = recipeForCreateDto.Name.ToLower();
+            recipeForCreateDto.AuthorId = userId;
+            
 
             if (await _recipesRepository.RecipeExists(recipeForCreateDto.Name))
                 return BadRequest("Recipe with that name already exists!");

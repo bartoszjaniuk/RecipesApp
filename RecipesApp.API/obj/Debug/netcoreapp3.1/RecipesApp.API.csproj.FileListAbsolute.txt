@@ -282,3 +282,4 @@ C:\RecipesApp\RecipesApp.API\obj\Debug\netcoreapp3.1\RecipesApp.API.RazorTargetA
 C:\RecipesApp\RecipesApp.API\obj\Debug\netcoreapp3.1\RecipesApp.API.csproj.CopyComplete
 C:\RecipesApp\RecipesApp.API\obj\Debug\netcoreapp3.1\RecipesApp.API.dll
 C:\RecipesApp\RecipesApp.API\obj\Debug\netcoreapp3.1\RecipesApp.API.pdb
+C:\RecipesApp\RecipesApp.API\bin\Debug\netcoreapp3.1\Data\CategoriesSeedData.json

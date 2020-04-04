@@ -30,6 +30,20 @@ namespace RecipesApp.API.Migrations
                     b.ToTable("Values");
                 });
 
+            modelBuilder.Entity("RecipesApp.API.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("RecipesApp.API.Models.FavouriteRecipe", b =>
                 {
                     b.Property<int>("UserId")
@@ -108,6 +122,9 @@ namespace RecipesApp.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("TEXT");
 
@@ -127,6 +144,8 @@ namespace RecipesApp.API.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("UserId");
 
@@ -286,6 +305,12 @@ namespace RecipesApp.API.Migrations
 
             modelBuilder.Entity("RecipesApp.API.Models.Recipe", b =>
                 {
+                    b.HasOne("RecipesApp.API.Models.Category", "Category")
+                        .WithMany("Recipes")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("RecipesApp.API.Models.User", "User")
                         .WithMany("Recipes")
                         .HasForeignKey("UserId")

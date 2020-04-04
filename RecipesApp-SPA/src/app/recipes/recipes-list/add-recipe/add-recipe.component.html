@@ -48,6 +48,15 @@
         </div>
         </div>
 
+        <div class="form-group">
+          <label for="categoryId">Category</label>
+          <select class="form-control" formControlName="categoryId">
+              <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+          </select>
+          <div class="invalid-feedback"
+        *ngIf="addRecipeForm.get('categoryId').touched && addRecipeForm.get('categoryId').hasError('required')"> You must select category
+          </div>
+      </div>
         <div class="form-group text-center">
           <button class="btn btn-success" [disabled]="!addRecipeForm.valid" type="submit">Add</button>
           <button class="btn btn-default" type="button" (click)="cancel()">
