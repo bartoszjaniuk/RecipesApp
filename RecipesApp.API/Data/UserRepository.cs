@@ -56,6 +56,9 @@ namespace RecipesApp.API.Data
             .Include(r => r.Recipes)
             .Include(r => r.FavRecipes)
             .Where (x => x.Id != userParams.UserId).OrderByDescending(u => u.LastActive).AsQueryable();
+
+            users = users.Where(u => u.Gender == userParams.Gender);
+
             
 
             if (userParams.Likers)
