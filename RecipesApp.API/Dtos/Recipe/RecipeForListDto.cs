@@ -6,6 +6,7 @@ namespace RecipesApp.API.Dtos
         public string Name { get; set; }
         public int PreparationTime { get; set; }
         public string PhotoUrl { get; set; }
+        public string Category { get; set; }
         
     }
 }

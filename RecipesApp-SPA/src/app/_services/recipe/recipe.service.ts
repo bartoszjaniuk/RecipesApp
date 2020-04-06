@@ -45,6 +45,7 @@ getRecipes(page?, itemsPerPage?, recipeParams?): Observable<PaginatedResult<Reci
   if (recipeParams != null) {
     params = params.append('minTime', recipeParams.minTime);
     params = params.append('maxTime', recipeParams.maxTime);
+    params = params.append('category', recipeParams.category);
     // params = params.append('orderBy', recipeParams.orderBy);
   }
 

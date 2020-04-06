@@ -45,6 +45,7 @@ namespace RecipesApp.API.Controllers
         [HttpGet] // Pobieranie wartości
         public async Task<IActionResult> GetRecipes([FromQuery]RecipeParams recipeParams)
         {
+            
             var recipes = await _repository.GetRecipes(recipeParams);
 
             var recipesToReturn = _mapper.Map<IEnumerable<RecipeForListDto>>(recipes);

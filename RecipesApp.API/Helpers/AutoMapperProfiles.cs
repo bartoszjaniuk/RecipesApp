@@ -45,8 +45,9 @@ namespace RecipesApp.API.Helpers
            CreateMap<Recipe, RecipeForListDto>()
             .ForMember(dest => dest.PhotoUrl, opt => opt
                 .MapFrom(src => src.RecipePhotos
-                    .FirstOrDefault(p => p.IsMain).Url));
-
+                    .FirstOrDefault(p => p.IsMain).Url))
+            .ForMember(dest => dest.Category , opt => opt
+            .MapFrom(src => src.Categories.Name));
            //DETAIL
            CreateMap<Recipe, RecipeForDetailDto>()
             .ForMember(dest => dest.PhotoUrl, opt => opt

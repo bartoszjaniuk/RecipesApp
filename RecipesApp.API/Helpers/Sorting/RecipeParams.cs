@@ -6,6 +6,8 @@ namespace RecipesApp.API.Helpers
     {
         private int pageSize = 9;
 
+        public string Category { get; set; }
+
         public int MinTime { get; set; } = 2;
         public int MaxTime { get; set; } = 360;
 

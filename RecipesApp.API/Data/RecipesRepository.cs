@@ -46,9 +46,18 @@ namespace RecipesApp.API.Data
         public async Task<PagedList<Recipe>> GetRecipes(RecipeParams recipeParams)
         {
             var recipes =  _context.Recipes
+            .Include(c =>c.Categories)
             .Include(p => p.RecipePhotos)
             .Include(u => u.User).AsQueryable();
 
+            
+
+            
+            if(!string.IsNullOrEmpty(recipeParams.Category))
+            {
+                recipes = recipes.Where(u => u.Categories.Name == recipeParams.Category);
+            }
+            
             if(recipeParams.MinTime != 2 || recipeParams.MaxTime != 360)
             {
                 recipes = recipes.Where(r => r.PreparationTime >= recipeParams.MinTime 
