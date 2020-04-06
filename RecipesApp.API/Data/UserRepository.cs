@@ -57,31 +57,22 @@ namespace RecipesApp.API.Data
             .Include(r => r.FavRecipes)
             .Where (x => x.Id != userParams.UserId).OrderByDescending(u => u.LastActive).AsQueryable();
 
-            users = users.Where(u => u.Gender == userParams.Gender);
+            //users = users.Where(u => u.Gender == userParams.Gender);
 
             
 
-            if (userParams.Likers)
-            {
-                var userLikers = await GetUserLikes(userParams.UserId, userParams.Likers);
-                users = users.Where(u =>userLikers.Contains(u.Id));
-            }
+          if (userParams.Likers)
+           {
+               var userLikers = await GetUserLikes(userParams.UserId, userParams.Likers);
+               users = users.Where(u => userLikers.Contains(u.Id));
+           }
 
-            if (userParams.Likees)
-            {
-                var userLikees = await GetUserLikes(userParams.UserId, userParams.Likers);
-                users = users.Where(u =>userLikees.Contains(u.Id));
-            }
+           if (userParams.Likees)
+           {
+               var userLikees = await GetUserLikes(userParams.UserId, userParams.Likers);
+               users = users.Where(u => userLikees.Contains(u.Id));
+           }
 
-            // if (userParams.Favs)
-            // {   
-            //     var userFavRecipes = await GetUserFavRecipes(userParams.UserId, userParams.Favs);
-            //     users = users.Where(u => userFavRecipes.Contains(u.Id));
-            //     // users.Select(x=>x.FavRecipes).Where(u => userFavRecipes.Contains(u.RecipeId));
-            //     // users = users.Where(u => userFavRecipes.Contains(u.Id));
-            //     //źle wyświetla 
-            //     // powinno wyświetlić ulubione przepisy a nie ulubionych użytkownikow
-            // }
             
             
             if (userParams.MinAge != 18 || userParams.MaxAge != 99)
@@ -118,31 +109,14 @@ namespace RecipesApp.API.Data
 
             if (likers)
             {
-                return user.Likers.Where(u => u.LikeeId == id).Select(i =>i.LikerId);
+                return user.Likers.Where(u => u.LikeeId == id).Select(i => i.LikerId);
             }
             else
             {
-                return user.Likees.Where(u => u.LikerId == id).Select(i =>i.LikeeId);
+                return user.Likees.Where(u => u.LikerId == id).Select(i => i.LikeeId);
             }
 
         }
-
-
-
-        // private async Task <IEnumerable<int>> GetUserFavRecipes (int id, bool favs)
-        // {
-        //     var user = await _context.Users
-        //     .Include(x => x.FavRecipes)
-        //     .FirstOrDefaultAsync(u=>u.Id == id);
-
-        //     if(favs)
-        //     {
-        //         return user.FavRecipes.Where(u => u.UserId == id).Select(i => i.RecipeId);
-        //     }    
-
-        // }
-
-
 
         public async Task<UserPhoto> GetMainPhotoForUser(int userId)
         {
