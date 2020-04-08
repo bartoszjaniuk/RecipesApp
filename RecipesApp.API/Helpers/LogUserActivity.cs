@@ -1,9 +1,9 @@
-using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.DependencyInjection;
 using RecipesApp.API.Data;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace RecipesApp.API.Helpers
 {
@@ -15,13 +15,12 @@ namespace RecipesApp.API.Helpers
 
             var userId = int.Parse(resultContext.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            var repo = resultContext.HttpContext.RequestServices.GetService<IUserRepository>();
+            var repo = resultContext.HttpContext.RequestServices.GetService<IUserRepository>(); 
+            // dodać DependencyInjection
 
             var user = await repo.GetUser(userId);
-
             user.LastActive = DateTime.Now;
-
             await repo.SaveAll();
-        }
+            }
     }
 }
