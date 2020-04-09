@@ -43,13 +43,16 @@ export class AddRecipeComponent implements OnInit {
   createRecipe(id: number) {
     if (this.addRecipeForm.valid) {
       this.recipe = Object.assign({}, this.addRecipeForm.value);
-      this.recipeService.addNewRecipe(this.authService.currentUser.id, this.recipe).subscribe(() => {
+      this.recipeService.addNewRecipe(this.authService.currentUser.id, this.recipe)
+     .subscribe((result : any) => {
         this.alertifyService.success('New recipe has been added!');
+        // tslint:disable-next-line: no-shadowed-variable
+        const id = result.id;
+        this.router.navigate([`/recipe/edit/${id}`]);
       }, error => {
         this.alertifyService.error(error);
-      }, () => {
-          this.router.navigate(['/recipes']);
-        });
+      }); 
+
     }
   }
 
