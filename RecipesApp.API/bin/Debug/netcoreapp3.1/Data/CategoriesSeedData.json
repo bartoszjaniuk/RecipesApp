@@ -1,32 +1,38 @@
 [
     {
-      "Name": "Ciasta"
+        "Name": "Cakes"
     },
     {
-        "Name": "Zupy"
+        "Name": "Soup"
     },
     {
-        "Name": "Makarony"
+        "Name": "Pasta"
     },
     {
-        "Name": "Zapiekanki"
+        "Name": "Casserolles"
     },
     {
-        "Name": "Mięsne"
+        "Name": "With meat"
     },
     {
         "Name": "Fast-food"
     },
     {
-        "Name": "Śniadania"
+        "Name": "Breakfast"
     },
     {
-        "Name": "Przekąski"
+        "Name": "Snacks"
     },
     {
         "Name": "Fit"
     },
     {
-        "Name": "Desery"
+        "Name": "Desserts"
+    },
+    {
+        "Name": "Breads&Rolls"
+    },
+    {
+        "Name": "For students"
     }
 ]

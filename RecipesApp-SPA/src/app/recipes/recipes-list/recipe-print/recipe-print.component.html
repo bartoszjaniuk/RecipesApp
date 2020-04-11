@@ -1,0 +1,23 @@
+<div class="container mt-4 border">
+  <!-- Control the column width, and how they should appear on different devices -->
+  
+  <div class="row border">
+    <div class="col border">
+      <h2 class="text-center">{{recipe.name}}</h2>
+    </div>
+  </div>
+  
+  
+  <div class="row border">
+      <div class="col-sm-6 border">
+        <img src="{{recipe.photoUrl || '../../../../../../assets/image.png'}}" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="col-sm-6 border">
+        <p>Czas przygotowania: {{recipe.preparationTime}}</p>
+        <p>Składniki: {{recipe.ingredients}}</p>
+        <p>Opis: {{recipe.description}}</p>
+        <p>Data dodania: {{recipe.dateAdded | date}}</p>
+        <p>Autor:  </p>
+    </div>
+  </div>
+</div>

@@ -2,9 +2,14 @@
   <!-- Control the column width, and how they should appear on different devices -->
   
   <div class="row border">
-    <div class="col border">
+    <div class="col col-sm-7 border">
       <h2 class="text-center">{{recipe.name}}</h2>
     </div>
+    <div class="col col-sm-4 ml-auto mt-2">
+      <h4>
+         <i class="fa fa-clock-o"></i>{{recipe.preparationTime}}
+      </h4>
+      </div>
   </div>
   
   
@@ -13,11 +18,17 @@
         <img src="{{recipe.photoUrl || '../../../../../../assets/image.png'}}" class="img-fluid" alt="Responsive image">
       </div>
       <div class="col-sm-6 border">
-        <p>Czas przygotowania: {{recipe.preparationTime}}</p>
-        <p>Składniki: {{recipe.ingredients}}</p>
-        <p>Opis: {{recipe.description}}</p>
-        <p>Data dodania: {{recipe.dateAdded | date}}</p>
-        <p>Autor:  </p>
+        <h4 class="text-center">Ingredients:</h4>
+         {{recipe.ingredients}}
+        <h5>Date added: {{recipe.dateAdded | date}}</h5>
+      
+        <i (click)="printPage()" class="fa fa-print"></i>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h4>Description:</h4> 
+      <p class="description">{{recipe.description}}</p>
     </div>
   </div>
 

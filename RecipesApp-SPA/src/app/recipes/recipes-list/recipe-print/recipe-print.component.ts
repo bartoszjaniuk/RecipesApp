@@ -7,16 +7,14 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 
 @Component({
   selector: 'app-recipe-detail',
-  templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.css']
+  templateUrl: './recipe-print.component.html',
+  styleUrls: ['./recipe-print.component.css']
 })
-export class RecipeDetailComponent implements OnInit {
+export class RecipePrintComponent implements OnInit {
 
   recipe: Recipe;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-
-  
 
   constructor(private recipeService: RecipeService, private alertify: AlertifyService, private route: ActivatedRoute) { }
 
@@ -50,9 +48,5 @@ export class RecipeDetailComponent implements OnInit {
       });
     }
     return imageUrls;
-  }
-
-  printPage() {
-    window.print();
   }
 }
