@@ -10,12 +10,6 @@
       <div class="col-sm-8 border">
         <div class="row">
           <div class="col text-center border">{{user.username.toLocaleLowerCase()}}</div>
-          <div class="col text-center border">Obserwuj</div>
-          <div class="col text-center border">
-          <h2>
-            <i class="fa fa-comment"></i>
-          </h2>
-          </div>
         </div>
 
         <div class="row">
@@ -28,21 +22,14 @@
       </div>
   </div>
 
-
     <br>
     <hr>
-    <!-- <p class="text-center">User Recipes: </p>
-    <div class="row recipes-body">
-      <div *ngFor="let recipe of user.recipes" class="col-md-4 col-sm-6 mb-4">
-        <app-member-recipe-card [recipe]="recipe"></app-member-recipe-card>
-      </div>
-    </div> -->
     <div class="tab-panel">
       <tabset class="member-tabset" #memberTabs [justified]="true">
         <tab heading ="Recipes">
           <p class="text-center">User Recipes: </p>
           <div class="row recipes-body">
-            <div *ngFor="let recipe of user.recipes" class="col-md-4 col-sm-6 mb-4">
+            <div *ngFor="let recipe of user.recipes" class="col-md-4 col-sm-6 mt-4 mb-4">
               <app-member-recipe-card [recipe]="recipe"></app-member-recipe-card>
             </div>
           </div>
