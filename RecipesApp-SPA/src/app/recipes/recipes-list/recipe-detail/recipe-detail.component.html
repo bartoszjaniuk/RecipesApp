@@ -1,15 +1,25 @@
 <div class="container mt-4 border">
   <!-- Control the column width, and how they should appear on different devices -->
   
-  <div class="row border">
-    <div class="col col-sm-7 border">
-      <h2 class="text-center">{{recipe.name}}</h2>
+  <div class="row ">
+    <div class="col col-sm-6 ">
+      <h5 class="text-center">{{recipe.name}}</h5>
     </div>
-    <div class="col col-sm-4 ml-auto mt-2">
-      <h4>
-         <i class="fa fa-clock-o"></i>{{recipe.preparationTime}}
-      </h4>
+    <div class="col col-sm-4">
+      <h5>
+         Date added: {{recipe.dateAdded | date}}
+      </h5>
       </div>
+      <div class="col col-sm-1">
+        <h5>
+          <i class="fa fa-clock-o"></i>{{recipe.preparationTime}}
+        </h5>
+        </div>
+        <div class="col col-sm-1">
+          <h5>
+             <i (click)="printPage()" class="fa fa-print"></i>
+          </h5>
+          </div>
   </div>
   
   
@@ -20,14 +30,11 @@
       <div class="col-sm-6 border">
         <h4 class="text-center">Ingredients:</h4>
          {{recipe.ingredients}}
-        <h5>Date added: {{recipe.dateAdded | date}}</h5>
-      
-        <i (click)="printPage()" class="fa fa-print"></i>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-5">
     <div class="col">
-      <h4>Description:</h4> 
+      <h4 class="text-center">Description:</h4> 
       <p class="description">{{recipe.description}}</p>
     </div>
   </div>
