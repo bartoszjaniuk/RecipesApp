@@ -33,6 +33,7 @@ namespace RecipesApp.API
 
         public IConfiguration Configuration { get; }
 
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -40,6 +41,7 @@ namespace RecipesApp.API
             services.AddControllers().AddNewtonsoftJson(opt => {
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
+
             services.AddCors();
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(RecipesRepository).Assembly);
@@ -64,6 +66,10 @@ namespace RecipesApp.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
+
+            
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -84,20 +90,37 @@ namespace RecipesApp.API
                     });
                 });
             }
-
-            // app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseCors(x =>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
-            app.UseAuthentication();
             
+            
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseRouting();
+ 
+            app.UseAuthentication();
             app.UseAuthorization();
+ 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+ 
+            
+            
+            
+            
+                
+            
+                   
 
+            
+            // app.UseHttpsRedirection();
+            
+            
+     
+            
+            
             app.UseEndpoints(endpoints =>
             {
+                
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
