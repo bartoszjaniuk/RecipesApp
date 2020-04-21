@@ -11,6 +11,6 @@ namespace RecipesApp.API.Dtos
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
         public bool isMain { get; set; }
-        //public ICollection<RecipePhoto> RecipePhotos {get; set;}
+        
     }
 }

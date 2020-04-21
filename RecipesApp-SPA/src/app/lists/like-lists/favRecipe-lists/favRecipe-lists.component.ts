@@ -16,6 +16,7 @@ import { FavouriteRecipe } from 'src/app/_models/favouriteRecipe';
 })
 export class FavRecipeListsComponent implements OnInit {
   recipe: Recipe[];
+  show: boolean;
 
 
   constructor(private authService: AuthService, private userService: UserService,
