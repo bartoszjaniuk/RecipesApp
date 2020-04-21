@@ -15,6 +15,7 @@ namespace RecipesApp.API.Controllers
 {
     
     [Authorize]
+    [Route("api/[controller]")]
     [ApiController]
     public class RecipePhotosController : ControllerBase
     {
