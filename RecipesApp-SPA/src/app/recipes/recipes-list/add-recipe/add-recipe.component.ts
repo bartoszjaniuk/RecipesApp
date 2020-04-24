@@ -40,7 +40,7 @@ export class AddRecipeComponent implements OnInit {
   }
 
 
-  createRecipe(id: number) {
+  createRecipe() {
     if (this.addRecipeForm.valid) {
       this.recipe = Object.assign({}, this.addRecipeForm.value);
       this.recipeService.addNewRecipe(this.authService.currentUser.id, this.recipe)

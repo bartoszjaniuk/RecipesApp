@@ -46,6 +46,7 @@ import { FavRecipeCardComponent } from './lists/like-lists/favRecipe-lists/fav-r
 import { MessagesResolver } from './_models/messages-resolver';
 import { MemberMessagesComponent } from './members/member-list/member-messages/member-messages.component';
 import { FooterComponent } from './footer/footer.component';
+import { RecipePrintComponent } from './recipes/recipes-list/recipe-print/recipe-print.component';
 
 
 
@@ -85,7 +86,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberMessagesComponent,
       RecipeEditComponent,
       TimeAgoPipe,
-      FooterComponent
+      FooterComponent,
+      RecipePrintComponent
    ],
    imports: [
       BrowserModule,
