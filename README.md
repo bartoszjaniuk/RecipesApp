@@ -1,17 +1,23 @@
 # RecipesApp
-Aplikacja z przepisami kulinarnymi ASP.Net Core 3.1.1 + Angular
+Recipes Application ASP.Net Core 3.1.1 + Angular
 
-Logowanie
+
+Usage:
+
+Open project e.g in Visual Studio Code
+
+cd RecipesApp-SPA
+
+1.execute command: npm install
+2.execute command: ng serve
+
+Next cd..
+
+cd RecipesApp.API
+1. execute command: dotnet watch run
+
+How to login:
 http://localhost:5000/api/auth/login
 login: lola
 haslo: password
 
-Kopiujesz bearer token i wklejasz do Authorization
-
-Wyświetl ulub przpiesy 
-GET
-http://localhost:5000/api/users?favs=true
-
-POST
-Dodaj przepis do ulub
-http://localhost:5000/api/users/1/addToFav/3

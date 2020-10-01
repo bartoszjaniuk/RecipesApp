@@ -34,31 +34,20 @@ namespace RecipesApp.API
         public IConfiguration Configuration { get; }
 
         
-        public void ConfigureDevelopmentServices(IServiceCollection services)
-        {
-            services.AddDbContext<DataContext>( x=> x.UseSqlite
-            (Configuration.GetConnectionString("DefaultConnection")));
-
-            ConfigureServices(services);
-        }
-
-           public void ConfigureProductionServices(IServiceCollection services)
-        {
-            services.AddDbContext<DataContext>( x=> x.UseSqlServer
-            (Configuration.GetConnectionString("defaultConnection")));
-
-            ConfigureServices(services);
-        }
+    
 
 
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            
+            services.AddDbContext<DataContext>( x=> x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers().AddNewtonsoftJson(opt => {
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
-
+            
             services.AddCors();
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(RecipesRepository).Assembly);
